@@ -188,6 +188,20 @@ infer.check('Your - @inferid', arguments);
 ```
 The first parameter is your **@inferid** from your **JSDoc** comment. The second parameter is the method **arguments** array. This causes all the infer type checks to occur. 
 
+###Type Checking Errors
+
+In **InferJs** you have the option to throw exceptions or return the exception from the check method. Thrown errors come with tons of information for debugging your infers and code. Below is an example of an **InferTypeError** exception. 
+
+```console
+InferTypeError: Incorrect third parameter type in:
+@inferid: foo
+@function: ( msg: <string>, id: <number>, objectTester: <object> )
+@param: objectTester
+Expected Type: object
+Actual Type: null
+```
+
+
 There are many ways to utilize the **InferJs** library to help type check all your **JavaScript** code. 
 
 
