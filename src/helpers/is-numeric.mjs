@@ -1,6 +1,6 @@
 'use strict';
 
-import { type_of } from "./type-of.js";
+import { type_of } from "./type-of.mjs";
 
 /**
  * Checks if a string is numeric.

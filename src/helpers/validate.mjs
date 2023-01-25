@@ -1,9 +1,9 @@
 'use strict';
 
-import { type_of } from "./type-of.js";
-import { parseBool } from "./parse-bool.js";
-import { between, betweenBigInt } from "./between.js";
-import { isNumeric } from "./is-numeric.js";
+import { type_of } from "./type-of.mjs";
+import { parseBool } from "./parse-bool.mjs";
+import { between, betweenBigInt } from "./between.mjs";
+import { isNumeric } from "./is-numeric.mjs";
 
 // Regex functions
 const REG_NUMERIC = new RegExp(`^[-]{0,1}[0-9]+[n]{0,1}$`);
