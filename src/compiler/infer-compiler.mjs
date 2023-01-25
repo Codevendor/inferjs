@@ -171,6 +171,19 @@ export class InferCompiler {
     }
 
     /**
+     * Builds a JavaScript inferfile for processing with import.
+     * @param {*} infersObject - The infersobject
+     * @returns 
+     */
+    static buildInferFile(infersObject) {
+
+        const json = JSON.stringify(infersObject);
+
+        return `export const Infers = ${json};`;
+
+    }
+
+    /**
      * Gets the line number from the input by calculating newlines.
      * @param {string} input - The input to calculate from.
      * @param {string} word - The word to look for.
@@ -209,10 +222,10 @@ export class InferCompiler {
         // Parse file to object
         this.#parse(inputFile, readResults.data);
 
-        // Write file to output file with json
-        const writeResults = await InferCompiler.writeFile(outputFile, JSON.stringify(this.#source), outputFileOptions);
-
         console.log(`Writing output file: ${outputFile}...`);
+
+        // Write file to output file with json
+        const writeResults = await InferCompiler.writeFile(outputFile, InferCompiler.buildInferFile(this.#source), outputFileOptions);
 
         // Throw err
         if (!!writeResults.err) throw writeResults.err;
@@ -256,10 +269,10 @@ export class InferCompiler {
 
         }
 
-        // Write file to output file with json
-        const writeResults = await InferCompiler.writeFile(outputFile, JSON.stringify(this.#source), outputFileOptions);
-
         console.log(`Writing output file: ${outputFile}...`);
+
+        // Write file to output file with json
+        const writeResults = await InferCompiler.writeFile(outputFile, InferCompiler.buildInferFile(this.#source), outputFileOptions);
 
         // Throw err
         if (!!writeResults.err) throw writeResults.err;
@@ -754,15 +767,21 @@ export class InferCompiler {
 
 
 
-console.log(process.argv);
-console.log(path.resolve(process.argv[2]))
+//console.log(process.argv);
+//console.log(path.resolve(process.argv[2]))
 
 if (argv.length === 4) {
     
     const ic = new InferCompiler();
-    ic.parseFile(argv[2], {encoding:'utf8'}, argv[3], {flag: "wx"});
+    ic.parseFile(argv[2], { encoding: 'utf8' }, argv[3], { flag: "wx" }).then(() => {
+        process.exit(0);
+    }).catch(err => {
+        process.exit(-1);
+    });
 
 }
+
+
 
 //const ic = new InferCompiler();
 //ic.parseDirectory('/home/administrator/Pictures', { allowedExtensions: '.js' }, '/home/administrator/Pictures/test.json', {}, true);
