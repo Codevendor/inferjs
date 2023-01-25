@@ -26,7 +26,7 @@
 <h3 align="center">InferJS</h3>
 
   <p align="center">
-    A runtime library that allows you to infer rules for extending type checking of method parameters in JavaScript.
+    A runtime library that allows you to infer rules for extending type checking in JavaScript.
     <br />
     <a href="https://github.com/Codevendor/inferjs"><strong>Explore the docs »</strong></a>
     <br />
@@ -74,7 +74,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://inferjs.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `InferJs`, `Infer`, `Infer Js`, `Type`, `Type Checking`, `Type Checking JavaScript`, `Runtime Check`, `Runtime TYpe Checking`, `Param Checking`
+InferJs allows you to easily add type checking through JSDoc multi line comments in both client side and server side JavaScript. InferJs is provided with a compiler, that reads your JSDoc comments from your source code and compiles them into an Infer file that you can import into any JavaScript file. With this library, you can also enable extended type checking and narrow down your data types. Check out the examples below, to see how InferJs can save you time and money from costly bugs through development and release.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -82,7 +82,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 * [InferJS](https://inferjs.com/)
-* [JavaScript](https://)
+* [JSDoc](https://jsdoc.app/)
 * [Node.js](https://nodejs.org/)
 
 
