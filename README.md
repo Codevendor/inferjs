@@ -72,7 +72,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-InferJs allows you to easily add type checking through JSDoc multi line comments in both client side and server side JavaScript. InferJs is provided with a compiler, that reads your JSDoc comments from your source code and compiles them into an Infer file that you can import into any JavaScript file. With this library, you can also enable extended type checking and narrow down your data types. Check out the examples below, to see how InferJs can save you time and money from costly bugs through development and release.
+**InferJs** allows you to easily add type checking through **JSDoc** multi line comments in both client side and server side **JavaScript**. **InferJs** is provided with an  **Infer Compiler**, that reads your **JSDoc** comments from your source code and compiles them into an **Infer File** that you can import into any **JavaScript** file. With this library, you can also enable **Extended Type Checking** and narrow down your data types. Check out the examples below, to see how **InferJs** can save you time and money from costly bugs through development and release.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -125,7 +125,7 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Below are examples for using InferJs library in your code.
+Below are examples for using **InferJs** library in your code.
 
 ### Starting Code Example
 ```js
@@ -152,7 +152,7 @@ function foo(msg, id, send) {
 foo('test', 1234, true);
 ```
 
-There are many ways to utilize the InferJs library. The example above, imports in the pre-compiled Infers file that was created with the InferCompiler.
+There are many ways to utilize the **InferJs** library. The example above, imports in the pre-compiled Infers file that was created with the **InferCompiler**.
 Intialize the Infer library class with the infers to use.
 ```js
 import { Infers } from "./infers/test1.infer.mjs";
@@ -167,28 +167,28 @@ const infer = new Infer(Infers);
  */
 ```
 
-InferJs Interprets the comment and uses the JSDoc tags to introduce type checking into your code, through simple easy to understand instructions. The standard @param tag is used for standard type checking of method parameters. Specifying a type for your @param tag between the {string} will cause the parameter to be checked if type is string. 
+**InferJs** interprets the comment and uses the **JSDoc** tags to introduce type checking into your code, through simple easy to understand instructions. The standard **@param** tag is used for type checking of method parameters. Specifying a type(s) for your **@param** tag between the {string} will cause the parameter to be checked if type is string. 
 
 ```js
 /**
  * @infer {(string)} msg {STRING-NOT-EMPTY} - Checks if string is not empty.
  */
 ```
-InferJs allows extended type checking with the custom @infer tag. Add one or multiple infers to any parameter easily. All code is identified with a unique marker tag called @inferid. 
+**InferJs** allows extended type checking with the custom @infer tag. Add one or multiple infers to any parameter easily. All code is identified with a unique marker tag called **@inferid**. 
 ```js
 /**
  * @inferid foo
  */
 ```
-This tag allows code to still work while Javascript is compressed/minified or obfuscated. Infers are all stored in precompiled infer file. This makes it easy to write in your static data types and not have to worry about type checking them during runtime. Tag @inferid can be anything you want as a name but must be unique per item you want to check. 
+This tag allows code to still work while Javascript is **compressed/minified** or **obfuscated**. Infers are all stored in precompiled infer file. This makes it easy to write in your static data types and not have to worry about type checking them during runtime. Tag **@inferid** can be anything you want as a name, but must be **unique** per item you want to check. 
 
 To check your types all you have to do is add the line below at the top of your method or below your defined field.
 ```js
 infer.check('Your - @inferid', arguments);
 ```
-The first parameter is your @inferid from your JSDoc comment. The second parameter is the method arguments array. This causes all the infer type checks to occur. 
+The first parameter is your **@inferid** from your **JSDoc** comment. The second parameter is the method **arguments** array. This causes all the infer type checks to occur. 
 
-There are many ways to utilize the InferJs library to help type check all your JavaScript code. 
+There are many ways to utilize the **InferJs** library to help type check all your **JavaScript** code. 
 
 
 _For more examples, please refer to the [Documentation](https://inferjs.com)_
@@ -199,11 +199,8 @@ _For more examples, please refer to the [Documentation](https://inferjs.com)_
 
 <!-- ROADMAP -->
 ## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [March 2023] First Release Date - Possible 
+- [Jan 25, 2023] Under Development and Testing
 
 See the [open issues](https://github.com/Codevendor/inferjs/issues) for a full list of proposed features (and known issues).
 
