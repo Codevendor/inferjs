@@ -188,7 +188,7 @@ infer.check('Your - @inferid', arguments);
 ```
 The first parameter is your **@inferid** from your **JSDoc** comment. The second parameter is the method **arguments** array. This causes all the infer type checks to occur. 
 
-###Type Checking Errors
+### Type Checking Errors
 
 In **InferJs** you have the option to throw exceptions or return the exception from the check method. Thrown errors come with tons of information for debugging your infers and code. Below is an example of an **InferTypeError** exception. 
 
