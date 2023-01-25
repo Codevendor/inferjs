@@ -1,9 +1,6 @@
 'use strict';
 
-import { Infer } from "../core/infer.mjs";
 import { numberRepresent, type_of } from "../helpers/helpers.mjs";
-//import { numberRepresent } from "../helpers/number-represent.mjs";
-//import { DefineFunction } from "../helpers/define-function.mjs";
 
 /** 
  * For handling inferjs type errors.
