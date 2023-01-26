@@ -206,16 +206,28 @@ There are many ways to utilize the **InferJs** library to help type check all yo
 
 Before **InferJs** can do type checking, you need to compile your infers into an infer file. Below are terminal commands for processing your js file(s) infers.
 
-| InferCompiler Actions | Description         |
+### InferCompiler Actions
+| Action | Description         |
 | :--                   | :--                 |
 | parse-file            | Parses a file for JavaScript multiline comments, looking for JSDoc comment infers.  |
 ```console
-Format: <nodePath> <inferCompilerPath> <action> <inputFilePath> <outputFilePath> 
+Format: <nodePath> <inferCompilerPath> <action> <input=FilePath> <output=FilePath> 
 Example: /usr/bin/node ./src/compiler/infer-compiler.mjs -f --input=./tests/test1.mjs --output=./tests/test1.infer.mjs 
 ```
+| Action | Description         |
+| :--                   | :--                 |
 | parse-dir             | Parses a directory looking for JavaScript files with multiline comments, looking for JSDoc comment infers. |
+```console
+Format: <nodePath> <inferCompilerPath> <action> <input=FilePath> <input-options=> <output=FilePath> <output-options=> 
+Example: /usr/bin/node ./src/compiler/infer-compiler.mjs -d --input=./tests/ --output=./tests/test1.infer.mjs 
+```
+| Action | Description         |
+| :--                   | :--                 |
 | parse-list            | Parses a list of file paths, looking through each file listed for multiline comments with JSDoc comment infers. |
-
+```console
+Format: <nodePath> <inferCompilerPath> <action> <input=FilePath> <output=FilePath> 
+Example: /usr/bin/node ./src/compiler/infer-compiler.mjs -l --input=./tests/test1.mjs --output=./tests/test1.infer.mjs 
+```
 
 _For more examples, please refer to the [Documentation](https://inferjs.com)_
 
