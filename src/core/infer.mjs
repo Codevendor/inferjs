@@ -1,8 +1,8 @@
 'use strict';
 
 // Imports
-import { type_of } from "../helpers/helpers.mjs";
-import { InferTypeError } from "../errors/errors.mjs";
+import { type_of, validate } from "../helpers/helpers.mjs";
+import { InferError, InferTypeError } from "../errors/errors.mjs";
 //import { getMethodSignature } from "./get-method-signature.js";
 //import { parseMethodDefiniton } from "./parse-method-definition.js";
 //import { parseMethodParamOrder } from "./parse-method-param-order.js";
@@ -52,6 +52,7 @@ export class Infer {
             for (let i = 0; i < expectParams.length; i++) {
 
                 // Get param
+                const argValue = args[i];
                 const paramName = expectParams[i];
                 const param = inf['@param'][paramName];
 
@@ -59,8 +60,8 @@ export class Infer {
                 const allowedTypes = param.types;
 
                 // Get argument type
-                const argType = type_of(args[i]);
-                const argTypeExt = type_of(args[i], true);
+                const argType = type_of(argValue);
+                const argTypeExt = type_of(argValue, true);
 
                 // Check if type exists
                 if (!allowedTypes.hasOwnProperty(argType) && !allowedTypes.hasOwnProperty(argTypeExt, true)) {
@@ -68,7 +69,300 @@ export class Infer {
                     return new InferTypeError(inf, i, argType + '|' + argTypeExt);
                 }
 
-                //console.log('Key: ', param, allowedTypes);
+                console.log('Key: ', param);
+                console.log('test');
+
+                // Get unique actual types
+                const actualTypes = [argType, argTypeExt].filter((v, i, a) => a.indexOf(v) == i);
+
+                for (let i2 = 0; i2 < actualTypes.length; i2++) {
+
+                    const actualType = actualTypes[i2];
+
+                    if (allowedTypes.hasOwnProperty(actualType)) {
+
+                        const infers = allowedTypes[actualType].infers;
+                        const infersArray = Object.keys(infers);
+
+                        for (let i3 = 0; i3 < infersArray.length; i3++) {
+
+                            const infer = infersArray[i3].toUpperCase();
+                            const inferValue = infers[infer].value;
+
+                            // Method for throwing
+                            const THROW = () => {
+                                throw new InferError(inf);
+                            };
+
+                            switch (infer) {
+
+                                // Checks if string not empty
+                                case 'STRING-NOT-EMPTY':
+
+                                    if (actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if string is empty
+                                case 'STRING-EMPTY':
+
+                                    if (actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if inferValue string is of boolean type
+                                case 'BOOL':
+
+                                    if (actualType !== 'string' && actualType !== 'boolean' && actualType !== 'number') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if inferValue between
+                                case 'BETWEEN':
+
+                                    if (actualType !== 'number') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if inferValue between inclusive
+                                case 'BETWEEN-INCLUSIVE':
+
+                                    if (actualType !== 'number') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if bigint inferValue between
+                                case 'BETWEEN-BIGINT':
+
+                                    if (actualType !== 'bigint') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if bigint inferValue between inclusive
+                                case 'BETWEEN-BIGINT-INCLUSIVE':
+
+                                    if (actualType !== 'bigint') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if inferValue is greater than EinferValue
+                                case 'GREATER-THAN':
+
+                                    if (actualType !== 'number' && actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if inferValue is greater than equal EinferValue
+                                case 'GREATER-THAN-EQUAL':
+
+                                    if (actualType !== 'number' && actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if inferValue is less than EinferValue
+                                case 'LESS-THAN':
+
+                                    if (actualType !== 'number' && actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if inferValue is less than equal EinferValue
+                                case 'LESS-THAN-EQUAL':
+
+                                    if (actualType !== 'number' && actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if matches regex pattern
+                                case 'REGEX':
+
+                                    if (actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if a string is ALPHA Characters
+                                case 'ALPHA':
+
+                                    if (actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if a string is a number        
+                                case 'ISNUMBER':
+
+                                    if (actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if a string is numeric
+                                case 'ISNUMERIC':
+
+                                    if (actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if string is alpha numeric.
+                                case 'ALPHA-NUMERIC':
+
+                                    if (actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if case insensitive inferValue is in EinferValue array list
+                                case 'IN-LIST-CI':
+
+                                    if (actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if case sensitive inferValue is in EinferValue array list
+                                case 'IN-LIST':
+
+                                    if (actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if case insensitive inferValue is not in EinferValue array list
+                                case 'NOT-IN-LIST-CI':
+
+                                    if (actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if case sensitive inferValue is not in EinferValue array list
+                                case 'NOT-IN-LIST':
+
+                                    if (actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Check object extends all classes
+                                case 'EXTENDS-ALL':
+
+                                    if (actualType !== 'object') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Check object extends at least one class
+                                case 'EXTENDS':
+
+                                    if (actualType !== 'object') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if inferValue object contains case sensitive properties in EinferValue array list.
+                                case 'PROPS':
+
+                                    if (actualType !== 'object') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Check if array is not empty.
+                                case 'ARRAY-NOT-EMPTY':
+
+                                    if (actualType !== 'array') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if array is empty.
+                                case 'ARRAY-EMPTY':
+
+                                    if (actualType !== 'array') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Checks if array is of type list.
+                                case 'ARRAY-TYPES':
+
+                                    if (actualType !== 'array') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Check for INT8: -128 to 127
+                                case 'CHAR':
+                                case 'INT8':
+
+                                    if (actualType !== 'number' && actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Check for UINT8: 0 to 255
+                                case 'UNSIGNED CHAR':
+                                case 'UCHAR':
+                                case 'UINT8':
+
+                                    if (actualType !== 'number' && actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Check for INT16: -32768 to 32767
+                                case 'SHORT':
+                                case 'SHORT INT':
+                                case 'SIGNED SHORT INT':
+                                case 'INT16':
+
+                                    if (actualType !== 'number' && actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Check for UINT16: 0 to 65535
+                                case 'UNSIGNED SHORT':
+                                case 'UNSIGNED SHORT INT':
+                                case 'USHORT':
+                                case 'UINT16':
+
+                                    if (actualType !== 'number' && actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Check for INT32: -2147483648 to 2147483647
+                                case 'SIGNED INT':
+                                case 'INT':
+                                case 'INT32':
+
+                                    if (actualType !== 'number' && actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Check for UINT32: 0 to 4294967295
+                                case 'UNSIGNED INT':
+                                case 'UINT':
+                                case 'UINT32':
+
+                                    if (actualType !== 'number' && actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Check for INT64: -9223372036854775808 to 9223372036854775807
+                                case 'SIGNED LONG':
+                                case 'SIGNED LONG LONG':
+                                case 'LONG':
+                                case 'LONG LONG':
+                                case 'INT64':
+
+                                    if (actualType !== 'bigint' && actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                // Check for UINT64: 0 to 18446744073709551615
+                                case 'UNSIGNED LONG':
+                                case 'UNSIGNED LONG LONG':
+                                case 'ULONG':
+                                case 'UINT64':
+
+                                    if (actualType !== 'bigint' && actualType !== 'string') break;
+                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    break;
+
+                                default: break;
+                            }
+
+                        }
+
+                    }
+
+                }
+
             }
 
         }
@@ -79,95 +373,3 @@ export class Infer {
     }
 
 }
-
-
-
-
-
-///export function infer(parent, name, params)
-
-/**
- * A runtime library that allows you to infer rules for extending type checking of method parameters in JavaScript.
- * @function infer
- * @param {object} parent - The parent to where the method can be found to infer. 
- * @param {string} name - The name of the method to find to infer.
- * @param {arguments} params - The javascript method arguments array.
- * @example infer(this, 'methodname', arguments);
- * @returns {boolean} - Returns a bool representing whether method was inferred.
-
-export function infer(inferId, params) {
-
-    // Params check
-    //if (typeof parent !== 'object') throw new TypeError(``);
-    //if (typeof name !== 'string') throw new TypeError(``);
-    //if (typeof params !== 'arguments') throw new TypeError(``);
-
-    // Get the method signature
-    let sig = getMethodSignature(parent, name);
-
-    // Check if sig is null
-    if (sig === null) return false;
-
-    // Parse sig definition
-    sig.definition = parseMethodDefiniton(sig.definition);
-
-    // Get the method params to loop through
-    sig.paramOrder = parseMethodParamOrder(sig.method);
-
-    // Check if paramorder or errors
-    if (!Array.isArray(sig.paramOrder)) throw new Error(`Incorrect infer parsing`);
-
-    // Loop through expected params
-    sig.definition['@param'].forEach(eparam => {
-
-        // Check if parameter is optional
-        if (eparam.hasOwnProperty('optional') && eparam['optional']) return;
-
-        
-
-        // Check total required parameters
-        //const totalExpectedParams = Object.keys(sig.definition['@param']).length;
-
-
-    });
-
-    // Loop through @param
-    //for (let i = 0; i < )
-
-    /*
-    // Loop through parameters
-    for (let i = 0; i < sig.paramOrder.length; i++) {
-
-        // Get the parameter name
-        const pname = sig.paramOrder[i];
-        const paramValue = params[i];
-
-        // Check if param exists
-        if (!sig.definition['@param'].hasOwnProperty(pname)) continue;
-
-        // Get expected types for type check
-        const expectedTypes = sig.definition['@param'][pname].types;
-
-        // Get the actual param type.
-        const actualType = type_of(paramValue);
-        const actualTypeExt = type_of(paramValue, true);
-
-        if (expectedTypes.hasOwnProperty(actualType)) {
-            
-            console.log(`Found Processing actualtype ${name}`);
-
-        } else if (expectedTypes.hasOwnProperty(actualTypeExt)) {
-            
-            console.log(`Found Processing actualtypeext ${name}`);
-
-        } else {
-
-            throw new TypeError(`Incorrect type for ${pname}`);
-
-        }
-
-
-    }
-
-}
-*/ 
