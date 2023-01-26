@@ -45,6 +45,12 @@ const REG_INFER_PARSE_TAG_TYPEDEF = /@typedef\s{1,}\{{0,1}\({0,1}([^}{)(]+)\){0,
 // Parse yields
 const REG_INFER_PARSE_TAG_YIELDS = /@yields\s{1,}\{{0,1}\({0,1}([^}{)(]+)\){0,1}\}{0,1}\s{0,}-{0,1}\s{0,}(.*)?/ims;
 
+
+/**
+ * The InferCompiler Class
+ * @name InferCompiler
+ * @version 0.0.1
+ */
 export class InferCompiler {
 
     // Private fields
@@ -198,6 +204,8 @@ export class InferCompiler {
 
     }
 
+
+
     /**
      * The file to parse and look for infers.
      * @param {string} inputFile - The file path to parse.
@@ -239,16 +247,15 @@ export class InferCompiler {
      * @param {object} inputFileOptions - The file options for each file.
      * @param {string} outputFile - The file path to create the infer file.
      * @param {string} outputFileOptions - The file options for the outputfile.
-     * @param {boolean} recursive - Whether to recursive through directory.
      */
-    async parseDirectory(inputDirectory, inputFileOptions = {}, outputFile, outputFileOptions = {}, recursive = false) {
+    async parseDirectory(inputDirectory, inputFileOptions = {}, outputFile, outputFileOptions = {}) {
 
         if (!path.isAbsolute(inputDirectory)) {
             inputDirectory = path.resolve(inputDirectory);
         }
 
         // Get list of files for parsing
-        const files = await this.#getDirectoryList(inputDirectory, inputFileOptions, recursive);
+        const files = await this.#getDirectoryList(inputDirectory, inputFileOptions);
 
         for (let i = 0; i < files.length; i++) {
 
@@ -284,10 +291,9 @@ export class InferCompiler {
      * Gets a directory list of sub folders and files.
      * @param {*} inputDirectory - The input directory to look in.
      * @param {*} inputFileOptions - The input directory options.
-     * @param {*} recursive - Whether to look in sub folders.
      * @returns 
      */
-    async #getDirectoryList(inputDirectory, inputFileOptions, recursive = false) {
+    async #getDirectoryList(inputDirectory, inputFileOptions) {
 
         // Holds the files
         let files = [];
@@ -310,10 +316,10 @@ export class InferCompiler {
             // Throw error
             if (!!results.err) throw results.err;
 
-            if (results.stats.isDirectory() && recursive) {
+            if (results.stats.isDirectory() && inputFileOptions.hasOwnProperty('recursive') && inputFileOptions.recursive) {
 
                 // Add recursive files to list;
-                const rfiles = await this.#getDirectoryList(itemPath, inputFileOptions, recursive);
+                const rfiles = await this.#getDirectoryList(itemPath, inputFileOptions);
                 files = files.concat(rfiles);
 
             } else {
@@ -765,13 +771,246 @@ export class InferCompiler {
 
 }
 
+/**
+ * Parses a command line into arguments.
+ * @param {array} src - The command line to parse argv.
+ * @param {object} shortHandList - The command short hand list.
+ */
+function parseArgv(src, shortHandList = {}) {
+
+    // Set fields
+    const args = {};
+
+    // Set fields
+    args['$node'] = src.shift();
+    args['$infercompiler'] = src.shift();
+
+    // Loop through all possible matches
+    for (let i = 0; i < src.length; i++) {
+
+        // Get argument
+        const arg = src[i].trim();
+
+        if (arg.startsWith('--')) {
+
+            // parse double --
+            const pair = arg.split("=", 2).map(item => item.trim());
+
+            if (!pair || pair.length === 0 || pair[0] === '$') continue;
+
+            const name = pair[0].slice(2);
+
+            if (pair.length === 2) {
+
+                // Check for quote strings
+                if (pair[1].startsWith('"') && pair[1].endsWith('"')) { args[name] = pair[1].slice(1, -1); continue; }
+                if (pair[1].startsWith("'") && pair[1].endsWith("'")) { args[name] = pair[1].slice(1, -1); continue; }
+                if (pair[1].startsWith('`') && pair[1].endsWith('`')) { args[name] = pair[1].slice(1, -1); continue; }
+                args[name] = pair[1];
+
+            } else {
+                args[name] = true;
+            }
+
+            //args[] = (pair.length === 2) ? pair[1] : true;
+
+        } else if (arg.startsWith('-')) {
+
+            // parse double --
+            const pair2 = arg.split("=", 2).map(item => item.trim());
+
+            if (!pair2 || pair2.length === 0 || pair2[0] === '$') continue;
+
+            const name2 = pair2[0].slice(1);
+
+            // Check for multi command
+            if (pair2.length === 1) {
+
+                // Split into single commands
+                name2.split('').map(item => {
+
+                    // Check if shorthand
+                    if (shortHandList.hasOwnProperty(item)) {
+
+                        // Get the short
+                        const short = shortHandList[item];
+
+                        if (typeof short === 'object' && short.hasOwnProperty('name') && short.hasOwnProperty('value')) {
+                            args[short.name] = short.value;
+                            return;
+                        }
+
+                        item = shortHandList[item];
+                    }
+
+                    // Just set command
+                    args[item] = true;
+                });
+
+            } else {
+
+                if (pair2.length === 2) {
+
+                    // Check for quote strings
+                    if (pair2[1].startsWith('"') && pair2[1].endsWith('"')) { args[name2] = pair2[1].slice(1, -1); continue; }
+                    if (pair2[1].startsWith("'") && pair2[1].endsWith("'")) { args[name2] = pair2[1].slice(1, -1); continue; }
+                    if (pair2[1].startsWith('`') && pair2[1].endsWith('`')) { args[name2] = pair2[1].slice(1, -1); continue; }
+                    args[name2] = pair2[1];
+
+
+                } else {
+                    args[name2] = true;
+                }
+            }
+
+        } else {
+
+            if (arg[0] === '$') continue;
+
+            // parse normal
+            args[arg] = true;
+
+        }
+
+    }
+
+    return args;
+
+}
+
+async function main() {
+
+    // Compiler requires more than 1 parameter
+    if (argv.length < 3) {
+        console.log(`InferCompiler format: node <InferCompilerPath> <Parameters>\nFor help: node <InferCompilerPath> -h`);
+        process.exit(0);
+    }
+
+    // Create a shorthand list
+    const shortList = {
+        f: { name: 'action', value: 'parse-file' },
+        d: { name: 'action', value: 'parse-dir' },
+        l: { name: 'action', value: 'parse-list' },
+        h: 'help'
+    };
+
+    // Separate arguments
+    const args = parseArgv(argv, shortList);
+
+    // Check if help
+    if (args.hasOwnProperty('help')) {
+        console.log(`InferCompiler Help Menu:\n`);
+        process.exit(0);
+    }
+
+    try {
+
+        if (!args.hasOwnProperty('action')) throw new Error(`Missing action command`);
+
+        switch (args['action'].toLowerCase()) {
+
+            // Parses a single js file
+            case 'parse-file':
+
+                if (!args.hasOwnProperty('input')) throw new Error(`Missing required argument: <input> for parse-file`);
+
+                const input = args['input'];
+
+                const inputOptions = { encoding: 'utf8' };
+                if (args.hasOwnProperty('input-options-encoding')) inputOptions['encoding'] = args['input-options-encoding'];
+
+                const outputOptions = { flag: "wx" };
+                if (args.hasOwnProperty('output-options-flag')) outputOptions['flag'] = args['output-options-flag'];
+
+                let output = args['output'];
+                if (!output || typeof output !== 'string' || output.trim() === '') {
+
+                    // Output to input file directory
+                    output = path.dirname(input) + '/output.mjs';
+                }
+
+                // Get class
+                const ic = new InferCompiler();
+
+                // Async Parse file 
+                const results = await ic.parseFile(input, inputOptions, output, outputOptions).catch((err) => {
+                    throw new Error(`Processing action parse-file had internal error: ${err}`);
+                });
+
+                break;
+
+            // Parses a directory of file
+            case 'parse-dir':
+
+                if (!args.hasOwnProperty('input')) throw new Error(`Missing required argument: <input> for parse-dir`);
+
+                const input2 = args['input'];
+
+                const inputOptions2 = { recursive: false, allowedExtensions:["js", "mjs"] };
+                if (args.hasOwnProperty('input-options-recursive')) inputOptions2['recursive'] = args['input-options-recursive'];
+                if (args.hasOwnProperty('input-options-allowedExtensions')) inputOptions2['allowedExtensions'] = args['input-options-allowedExtensions'];
+
+                const outputOptions2 = { flag: "wx" };
+                if (args.hasOwnProperty('output-options-flag')) outputOptions2['flag'] = args['output-options-flag'];
+
+                let output2 = args['output'];
+                if (!output2 || typeof output2 !== 'string' || output2.trim() === '') {
+
+                    // Output to input file directory
+                    output2 = path.dirname(input2) + '/output.mjs';
+                }
+
+                // Get class
+                const ic2 = new InferCompiler();
+
+                // Async Parse file 
+                const results2 = await ic.parseDirectory(input2, inputOptions2, output2, outputOptions2, inputOptions2.recursive).catch((err) => {
+                    throw new Error(`Processing action parse-dir had internal error: ${err}`);
+                });
+
+
+                break;
+
+            // Parses a list of file path
+            case 'parse-list':
+
+                break;
+
+            // No action return command format
+            default: throw new Error(`Did not recognize action: ${args['action']}`);
+        }
+
+    } catch (err) {
+
+        console.error(`InferCompiler ${err}\nFor help: node <InferCompilerPath> -h`);
+
+    }
+}
+
+// node <InferCompilerPath> <Parameters> 
+// Is command line use
+if (typeof argv !== 'undefined') {
+
+    // Call main
+    main();
+
+}
+
+
+// Command format
+// node <InferCompilerPath> <Parameters> 
+// node ./src/compiler/infer-compiler.mjs ./tests/test1.mjs ./tests/infers/test1.infer.mjs
+
+
+
 
 
 //console.log(process.argv);
 //console.log(path.resolve(process.argv[2]))
 
+/*
 if (argv.length === 4) {
-    
+
     const ic = new InferCompiler();
     ic.parseFile(argv[2], { encoding: 'utf8' }, argv[3], { flag: "wx" }).then(() => {
         process.exit(0);
@@ -780,6 +1019,7 @@ if (argv.length === 4) {
     });
 
 }
+*/
 
 
 
