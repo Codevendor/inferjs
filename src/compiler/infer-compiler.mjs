@@ -946,7 +946,7 @@ async function main() {
 
                 const input2 = args['input'];
 
-                const inputOptions2 = { recursive: false, allowedExtensions:["js", "mjs"] };
+                const inputOptions2 = { recursive: false, allowedExtensions: ["js", "mjs"] };
                 if (args.hasOwnProperty('input-options-recursive')) inputOptions2['recursive'] = args['input-options-recursive'];
                 if (args.hasOwnProperty('input-options-allowedExtensions')) inputOptions2['allowedExtensions'] = args['input-options-allowedExtensions'];
 
@@ -987,42 +987,10 @@ async function main() {
     }
 }
 
-// node <InferCompilerPath> <Parameters> 
-// Is command line use
+// Check if direct access or through class import
 if (typeof argv !== 'undefined') {
 
     // Call main
     main();
 
 }
-
-
-// Command format
-// node <InferCompilerPath> <Parameters> 
-// node ./src/compiler/infer-compiler.mjs ./tests/test1.mjs ./tests/infers/test1.infer.mjs
-
-
-
-
-
-//console.log(process.argv);
-//console.log(path.resolve(process.argv[2]))
-
-/*
-if (argv.length === 4) {
-
-    const ic = new InferCompiler();
-    ic.parseFile(argv[2], { encoding: 'utf8' }, argv[3], { flag: "wx" }).then(() => {
-        process.exit(0);
-    }).catch(err => {
-        process.exit(-1);
-    });
-
-}
-*/
-
-
-
-//const ic = new InferCompiler();
-//ic.parseDirectory('/home/administrator/Pictures', { allowedExtensions: '.js' }, '/home/administrator/Pictures/test.json', {}, true);
-//ic.parseFile('/home/administrator/Pictures/test.js', {encoding:'utf8'}, '/home/administrator/Pictures/test.json', {});
