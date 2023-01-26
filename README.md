@@ -209,8 +209,10 @@ Before **InferJs** can do type checking, you need to compile your infers into an
 | InferCompiler Actions | Description         |
 | :--                   | :--                 |
 | parse-file            | Parses a file for JavaScript multiline comments, looking for JSDoc comment infers.  |
-| Format: <nodePath> <inferCompilerPath> <action> <inputFilePath> <outputFilePath> 
-| Example: /usr/bin/node ./src/compiler/infer-compiler.mjs -f --input=./tests/test1.mjs --output=./tests/test1.infer.mjs             |
+```console
+Format: <nodePath> <inferCompilerPath> <action> <inputFilePath> <outputFilePath> 
+Example: /usr/bin/node ./src/compiler/infer-compiler.mjs -f --input=./tests/test1.mjs --output=./tests/test1.infer.mjs 
+```
 | parse-dir             | Parses a directory looking for JavaScript files with multiline comments, looking for JSDoc comment infers. |
 | parse-list            | Parses a list of file paths, looking through each file listed for multiline comments with JSDoc comment infers. |
 
