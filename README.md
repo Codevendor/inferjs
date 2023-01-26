@@ -26,7 +26,7 @@
 <h3 align="center">InferJS</h3>
 
   <p align="center">
-    A runtime library that allows you to infer rules for extending type checking in JavaScript.
+    A runtime library that allows you to infer rules for extended type checking in JavaScript.
     <br />
     <a href="https://github.com/Codevendor/inferjs"><strong>Explore the docs »</strong></a>
     <br />
@@ -72,7 +72,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-**InferJs** allows you to easily add type checking through **JSDoc** multi line comments in both client side and server side **JavaScript**. **InferJs** is provided with an  **Infer Compiler**, that reads your **JSDoc** comments from your source code and compiles them into an **Infer File** that you can import into any **JavaScript** file. With this library, you can also enable **Extended Type Checking** and narrow down your data types. Check out the examples below, to see how **InferJs** can save you time and money from costly bugs through development and release.
+**InferJs** allows you to easily add type checking through **JSDoc** multi line comments in both client and server side **JavaScript**. **InferJs** is provided with an  **InferCompiler**. The compiler interprets your **JSDoc** comments from your source code and compiles them into an **Infer File** that you can import into any **JavaScript** file. With this library, you can also enable **Extended Type Checking** and narrow down your data types. Check out the examples below, to see how **InferJs** can save you time and money from costly bugs through development and release.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -200,9 +200,17 @@ InferTypeError: Incorrect third parameter type in:
 Expected Type: object
 Actual Type: null
 ```
-
-
 There are many ways to utilize the **InferJs** library to help type check all your **JavaScript** code. 
+
+## InferCompiler Usage
+
+Before your infer type checking can work, you need to compile your infers into an infer file. Below are terminal commands for proessing your js file(s) infers.
+
+| InferCompiler Actions | Description         |
+| :--                   | :--                 |
+| parse-file            | Parses a file for JavaScript multiline comments, looking for JSDoc comment infers.  |
+| parse-dir             | Parses a directory looking for JavaScript files with multiline comments, looking for JSDoc comment infers. |
+| parse-list            | Parses a list of file paths, looking through each file listed for multiline comments with JSDoc comment infers. |
 
 
 _For more examples, please refer to the [Documentation](https://inferjs.com)_
@@ -215,6 +223,10 @@ _For more examples, please refer to the [Documentation](https://inferjs.com)_
 ## Roadmap
 - [March 2023] First Release Date - Possible 
 - [Jan 25, 2023] Under Development and Testing
+
+<!-- CHANGELOG -->
+## Change Log
+- [Jan 26, 2023] Added in extended type checking to infer types. Updated InferCompiler with terminal command argument processing.
 
 See the [open issues](https://github.com/Codevendor/inferjs/issues) for a full list of proposed features (and known issues).
 
