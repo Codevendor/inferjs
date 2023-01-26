@@ -71,7 +71,8 @@ export function type_of(src, extended = false) {
         default:
 
             // Check if window
-            if (window && typeof window !== 'undefined' && src === window) return 'window';
+            if (typeof window !== 'undefined' && src === window) return 'window';
+
 
             return srcType;
 
