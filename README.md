@@ -1,3 +1,4 @@
+
 <div id="top"></div>
 
 <!--
@@ -60,6 +61,7 @@
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#change-log">Change Log</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -70,11 +72,11 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />About The Project
 
 **InferJs** allows you to easily add type checking through **JSDoc** multi line comments in both client and server side **JavaScript**. **InferJs** is provided with an  **InferCompiler**. The compiler interprets your **JSDoc** comments from your source code and compiles them into an **Infer File** that you can import into any **JavaScript** file. With this library, you can also enable **Extended Type Checking** and narrow down your data types. Check out the examples below, to see how **InferJs** can save you time and money from costly bugs through development and release.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 
 
@@ -84,17 +86,17 @@
 * [Node.js](https://nodejs.org/)
 
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Getting Started
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
 * npm
@@ -102,7 +104,7 @@ This is an example of how to list things you need to use the software and how to
   npm install npm@latest -g
   ```
 
-### Installation
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Installation
 
 1. Get a free API Key at [https://inferjs.com](https://inferjs.com)
 2. Clone the repo
@@ -118,12 +120,12 @@ This is an example of how to list things you need to use the software and how to
    const API_KEY = 'ENTER YOUR API';
    ```
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Usage
 
 Below are examples for using **InferJs** library in your code.
 
@@ -160,7 +162,7 @@ import { Infer } from "../src/core/infer.mjs";
 const infer = new Infer(Infers);
 ```
 
-### JSDoc Comment Infer Addins
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />JSDoc Comment Infer Addins
 ```js
 /**
  * @param {string} msg - The message to send through console.log().
@@ -188,7 +190,7 @@ infer.check('Your - @inferid', arguments);
 ```
 The first parameter is your **@inferid** from your **JSDoc** comment. The second parameter is the method **arguments** array. This causes all the infer type checks to occur. 
 
-### Type Checking Errors
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Type Checking Errors
 
 In **InferJs** you have the option to throw exceptions or return the exception from the check method. Thrown errors come with tons of information for debugging your infers and code. Below is an example of an **InferTypeError** exception. 
 
@@ -202,56 +204,70 @@ Actual Type: null
 ```
 There are many ways to utilize the **InferJs** library to help type check all your **JavaScript** code. 
 
-## InferCompiler Usage
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferCompiler Usage
 
 Before **InferJs** can do type checking, you need to compile your infers into an infer file. Below are terminal commands for processing your js file(s) infers.
 
-### InferCompiler Actions
-| Action | Description         |
+#### InferCompiler Actions
+| Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Description         |
 | :--                   | :--                 |
-| parse-file            | Parses a file for JavaScript multiline comments, looking for JSDoc comment infers.  |
+| [parse-file]()            | Parses a file for JavaScript multiline comments, looking for JSDoc comment infers.  |
 ```console
 Format: <nodePath> <inferCompilerPath> <action> <input=FilePath> <output=FilePath> 
 Example: /usr/bin/node ./src/compiler/infer-compiler.mjs -f --input=./tests/test1.mjs --output=./tests/test1.infer.mjs 
 ```
-| Action | Description         |
+| Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Description         |
 | :--                   | :--                 |
-| parse-dir             | Parses a directory looking for JavaScript files with multiline comments, looking for JSDoc comment infers. |
+| [parse-dir]()             | Parses a directory looking for JavaScript files with multiline comments, looking for JSDoc comment infers. |
 ```console
 Format: <nodePath> <inferCompilerPath> <action> <input=FilePath> <input-options=> <output=FilePath> <output-options=> 
 Example: /usr/bin/node ./src/compiler/infer-compiler.mjs -d --input=./tests/ --output=./tests/test1.infer.mjs 
 ```
-| Action | Description         |
+| Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Description         |
 | :--                   | :--                 |
-| parse-list            | Parses a list of file paths, looking through each file listed for multiline comments with JSDoc comment infers. |
+| [parse-list]()            | Parses a list of file paths, looking through each file listed for multiline comments with JSDoc comment infers. |
 ```console
 Format: <nodePath> <inferCompilerPath> <action> <input=FilePath> <output=FilePath> 
 Example: /usr/bin/node ./src/compiler/infer-compiler.mjs -l --input=./tests/test1.mjs --output=./tests/test1.infer.mjs 
 ```
 
+| Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Description         |
+| :--                   | :--                 |
+| [parse-file-list]()            | Parses a file, containing a list of string file paths, broken up by newline characters, of files to process for Infers.   |
+
+```console 
+
+foo@console:~$: /usr/bin/node ./src/compiler/infer-compiler.mjs -l --input=./tests/test1.mjs --output=./tests/test1.infer.mjs 
+```
+
 _For more examples, please refer to the [Documentation](https://inferjs.com)_
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 
 
 <!-- ROADMAP -->
-## Roadmap
-- [March 2023] First Release Date - Possible 
-- [Jan 25, 2023] Under Development and Testing
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Roadmap
+- [[ March 2023 ]()] - First Release Date - Possible 
+- [[ Jan 25, 2023 ]()] - Under Development and Testing
+
+
 
 <!-- CHANGELOG -->
-## Change Log
-- [Jan 26, 2023] Added in extended type checking to infer types. Updated InferCompiler with terminal command argument processing.
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Change Log
+
+- [[ Jan 27, 2023 ]()] - Added in InferCompiler actions parse-list, parse-file-list. Removed bugs found in InferCompiler and setup testing per action in .vscode launch and task files.
+
+- [[ Jan 26, 2023 ]()] - Added in extended type checking to infer types. Updated InferCompiler with terminal command argument processing.
 
 See the [open issues](https://github.com/Codevendor/inferjs/issues) for a full list of proposed features (and known issues).
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 
 
 <!-- CONTRIBUTING -->
-## Contributing
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -264,35 +280,35 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 
 
 <!-- LICENSE -->
-## License
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />License
 
 Distributed under the **MIT** License. See `LICENSE.txt` for more information.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 
 
 <!-- CONTACT -->
-## Contact
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Contact
 
 Project Link: [https://github.com/Codevendor/inferjs](https://github.com/Codevendor/inferjs)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 
 
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Acknowledgments
 
 * [https://codevendor.com](Codevendor)
 
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 
 
