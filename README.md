@@ -76,9 +76,9 @@
 
 
 ### Built With
-* [InferJS](https://inferjs.com/)
-* [JSDoc](https://jsdoc.app/)
-* [Node.js](https://nodejs.org/)
+* [InferJS Version 0.0.1](https://inferjs.com/)
+* [JSDoc Version 3](https://jsdoc.app/)
+* [Node.js Version 18+](https://nodejs.org/)
 
 
 
@@ -165,7 +165,7 @@ With the standard tag **@param**, you can specify type(s) between curly brackets
 
 - Example: {[type]()} or {([type1]() | [type2]())}.
 
-The library can check all standard **JavaScript** types and also **Infer Extended Types**. 
+The library can check all standard **JavaScript** types and also **InferJS Extended Types**. 
 
 | Standard JS Types | Description |
 | :-- | :-- |
