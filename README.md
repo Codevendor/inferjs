@@ -199,7 +199,7 @@ The **@infer** is so versatile you can attach it to multiple types in a group an
 ```js
 /**
  * @infer {(number|string)} msg {INT32|STRING-NOT-EMPTY} - Checks if string is not empty and is an integer32.
- * @infer {array(string)} arrname {IN-LIST=a,b,c,d,e} - Checks if a,b,c,d is in array.
+ * @infer {array} arrname {IN-LIST=a,b,c,d,e} - Checks if a,b,c,d is in array.
  * @infer {object} objname {PROPS=id,name} - Checks if objname has properties id and name.
  */
 ```
