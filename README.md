@@ -72,7 +72,7 @@
 <!-- ABOUT THE PROJECT -->
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />About InferJS
 
-[**InferJS**](https://github.com/Codevendor/inferjs) allows you to easily add type checking through **JSDoc** multiline comments in both client and server side **JavaScript**. [**InferJS**](https://github.com/Codevendor/inferjs) is provided with an  [**InferCompiler**](https://github.com/Codevendor/inferjs). The compiler interprets your **JSDoc** comments from your source code and compiles them into an **InferFile** that you can import into any **JavaScript** file. With this library, you can also enable **Extended Type Checking** and narrow down your data types. Check out the examples below, to see how [**InferJS**](https://github.com/Codevendor/inferjs) can save you time and money from costly bugs through development and release.
+[**InferJS**](https://github.com/Codevendor/inferjs) allows you to easily add runtime type checking by utilizing **JSDoc** multiline comments in both client and server side **JavaScript**. [**InferJS**](https://github.com/Codevendor/inferjs) is provided with an  [**InferCompiler**](https://github.com/Codevendor/inferjs). The compiler interprets your **JSDoc** comments from your source code and compiles them into an **InferFile** that you can import into any **JavaScript** file. With this library, you can also enable **Extended Type Checking** and narrow down your data types. Check out the examples below, to see how [**InferJS**](https://github.com/Codevendor/inferjs) can save you time and money from costly bugs through development and release.
 
 
 ### Built With
