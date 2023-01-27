@@ -24,8 +24,6 @@
     <img src="https://github.com/Codevendor/inferjs/blob/main/assets/images/inferjs-logo.png?raw=true" alt="Logo" width="443" height="183">
   </a>
 
-<h3 align="center">InferJS</h3>
-
   <p align="center">
     A runtime library that allows you to infer rules for extended type checking in JavaScript.
     <br />
@@ -47,7 +45,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-inferjs">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -72,21 +70,15 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />About The Project
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />About InferJS
 
-**InferJs** allows you to easily add type checking through **JSDoc** multi line comments in both client and server side **JavaScript**. **InferJs** is provided with an  **InferCompiler**. The compiler interprets your **JSDoc** comments from your source code and compiles them into an **Infer File** that you can import into any **JavaScript** file. With this library, you can also enable **Extended Type Checking** and narrow down your data types. Check out the examples below, to see how **InferJs** can save you time and money from costly bugs through development and release.
-
-
-
+[**InferJS**](https://github.com/Codevendor/inferjs) allows you to easily add type checking through **JSDoc** multiline comments in both client and server side **JavaScript**. [**InferJS**](https://github.com/Codevendor/inferjs) is provided with an  [**InferCompiler**](https://github.com/Codevendor/inferjs). The compiler interprets your **JSDoc** comments from your source code and compiles them into an **InferFile** that you can import into any **JavaScript** file. With this library, you can also enable **Extended Type Checking** and narrow down your data types. Check out the examples below, to see how [**InferJS**](https://github.com/Codevendor/inferjs) can save you time and money from costly bugs through development and release.
 
 
 ### Built With
 * [InferJS](https://inferjs.com/)
 * [JSDoc](https://jsdoc.app/)
 * [Node.js](https://nodejs.org/)
-
-
-
 
 
 
@@ -127,7 +119,7 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Usage
 
-Below are examples for using **InferJs** library in your code.
+Below are examples for using [**InferJS**](https://github.com/Codevendor/inferjs) library in your code.
 
 ### Starting Code Example
 ```js
@@ -154,8 +146,7 @@ function foo(msg, id, send) {
 foo('test', 1234, true);
 ```
 
-There are many ways to utilize the **InferJs** library. The example above, imports in the pre-compiled Infers file that was created with the **InferCompiler**.
-Intialize the Infer library class with the infers to use.
+There are many ways to utilize the [**InferJS**](https://github.com/Codevendor/inferjs) library. The example above, imports in the pre-compiled **InferFile** that was created with the [**InferCompiler**](https://github.com/Codevendor/inferjs). Intialize the [**Infer Class**](https://github.com/Codevendor/inferjs) library with the **InferFile** you want to use.
 ```js
 import { Infers } from "./infers/test1.infer.mjs";
 import { Infer } from "../src/core/infer.mjs";
@@ -169,22 +160,61 @@ const infer = new Infer(Infers);
  */
 ```
 
-**InferJs** interprets the comment and uses the **JSDoc** tags to introduce type checking into your code, through simple easy to understand instructions. The standard **@param** tag is used for type checking of method parameters. Specifying a type(s) for your **@param** tag between the {string} will cause the parameter to be checked if type is string. 
+[**InferJS**](https://github.com/Codevendor/inferjs) interprets the comment and uses the **JSDoc** tags to introduce type checking into your code, through simple easy to understand instructions. 
+With the standard tag **@param**, you can specify type(s) between curly brackets,
+
+- Example: {[type]()} or {([type1]() | [type2]())}.
+
+The library can check all standard **JavaScript** types and also **Infer Extended Types**. 
+
+| Standard JS Types | Description |
+| :-- | :-- |
+| [bool]()      |  A boolean type: [true]() or [false]() |
+| [number]() | A number type: [1000]() or [10.25]() |
+| [string]() | A string type: ['foo1']() or ["foo2"]() |
+| [bigint]() | A big integer type: ['1010101112233343545545545446n']() |
+| [symbol]() | A symbol type: [**Symbol**]() |
+| [null]()   | A null type: [**null**]() |
+| [undefined]() | An undefined type: [**undefined**]() |
+
+| Extended InferJS Types | Description |
+| :-- | :-- |
+| [array]() | An array type: [[]]() |
+| [className]() | A class name: [fooClass]() |
+| [functionName]() | A function name: [fooFunction]() |
+| [errorName]() | An error type: [Error]() or [TypeError]() or [errorName]()  |
+| [infinity]() | An infinity number type: [Infinity]() |
+| [nan]() | Not a number type: [NaN]() |
+
+[**InferJS**](https://github.com/Codevendor/inferjs) also allows, extended type checking with the custom **@infer** tag. Add one or multiple **infer** to any tag easily. You can specify the **@infer** tag per each line and infer type checks for narrowing like so:
 
 ```js
 /**
  * @infer {(string)} msg {STRING-NOT-EMPTY} - Checks if string is not empty.
  */
 ```
-**InferJs** allows extended type checking with the custom @infer tag. Add one or multiple infers to any parameter easily. All code is identified with a unique marker tag called **@inferid**. 
+
+The **@infer** is so versatile you can attach it to multiple types in a group and specify multiple narrowing and values to check against like so:
+
+```js
+/**
+ * @infer {(number|string)} msg {INT32|STRING-NOT-EMPTY} - Checks if string is not empty and is an integer32.
+ * @infer {array(string)} arrname {IN-LIST=a,b,c,d,e} - Checks if a,b,c,d is in array.
+ * @infer {object} objname {PROPS=id,name} - Checks if objname has properties id and name.
+ */
+```
+
+All code is identified with a unique marker tag called **@inferid**. 
+
 ```js
 /**
  * @inferid foo
  */
 ```
-This tag allows code to still work while Javascript is **compressed/minified** or **obfuscated**. Infers are all stored in precompiled infer file. This makes it easy to write in your static data types and not have to worry about type checking them during runtime. Tag **@inferid** can be anything you want as a name, but must be **unique** per item you want to check. 
+This tag allows code to still work while **JavaScript** is **compressed/minified** or **obfuscated**. **Infers** are all stored in a precompiled **InferFile**. This makes it easy to write in your static data types and not have to worry about type checking them during runtime. Tag **@inferid** can be anything you want as a name, but must be **unique** per item you want to check. 
 
 To check your types all you have to do is add the line below at the top of your method or below your defined field.
+
 ```js
 infer.check('Your - @inferid', arguments);
 ```
@@ -192,7 +222,7 @@ The first parameter is your **@inferid** from your **JSDoc** comment. The second
 
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Type Checking Errors
 
-In **InferJs** you have the option to throw exceptions or return the exception from the check method. Thrown errors come with tons of information for debugging your infers and code. Below is an example of an **InferTypeError** exception. 
+In [**InferJS**](https://github.com/Codevendor/inferjs) you have the option to throw **exceptions** or return the **exception** from the check method. Thrown errors come with tons of information for debugging your infers and code. Below is an example of an **InferTypeError** exception. 
 
 ```console
 InferTypeError: Incorrect third parameter type in:
@@ -202,11 +232,11 @@ InferTypeError: Incorrect third parameter type in:
 Expected Type: object
 Actual Type: null
 ```
-There are many ways to utilize the **InferJs** library to help type check all your **JavaScript** code. 
+There are many ways to utilize the [**InferJS**](https://github.com/Codevendor/inferjs) library to help type check all your **JavaScript** code. 
 
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferCompiler Usage
 
-Before **InferJs** can do type checking, you need to compile your infers into an infer file. Below are terminal commands for processing your js file(s) infers.
+Before [**InferJs**](https://github.com/Codevendor/inferjs) can do type checking, you need to compile your **Infers** into an **InferFile**. Below are terminal commands for processing your **JavaScript** file(s) **Infers**.
 
 #### InferCompiler Actions
 | Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Cmd| Description |
@@ -252,9 +282,9 @@ _For more examples, please refer to the [Documentation](https://inferjs.com)_
 <!-- CHANGELOG -->
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Change Log
 
-- [[ Jan 27, 2023 ]()] - Added in InferCompiler actions parse-list, parse-file-list. Removed bugs found in InferCompiler and setup testing per action in .vscode launch and task files.
+- [[ Jan 27, 2023 ]()] - Added in **InferCompiler** actions parse-list, parse-file-list. Removed bugs found in **InferCompiler** and setup testing per action in **.vscode** launch and task files.
 
-- [[ Jan 26, 2023 ]()] - Added in extended type checking to infer types. Updated InferCompiler with terminal command argument processing.
+- [[ Jan 26, 2023 ]()] - Added in extended type checking to infer types. Updated **InferCompiler** with terminal command argument processing.
 
 See the [open issues](https://github.com/Codevendor/inferjs/issues) for a full list of proposed features (and known issues).
 
@@ -301,7 +331,9 @@ Project Link: [https://github.com/Codevendor/inferjs](https://github.com/Codeven
 <!-- ACKNOWLEDGMENTS -->
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Acknowledgments
 
-* [https://codevendor.com](Codevendor)
+* [Codevendor](https://codevendor.com]) - Thanks to developer: Adam Smith for creating InferJS.
+* [JSDoc](https://jsdoc.app/) - Thanks to Michael Mathews and Gabriel Reid for creating JSDoc. 
+
 
 
 
