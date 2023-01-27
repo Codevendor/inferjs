@@ -9,7 +9,8 @@ const infer = new Infer(Infers);
  * @param {string} msg - The message to send through console.log().
  * @param {(number|string)} id - The id of the message.
  * @param {boolean} [send=true] - Whether to send your message.
- * @infer {(string)} msg {STRING-NOT-EMPTY} - Checks if string is not empty.
+ * @infer {(string)} msg {STRING-NOT-EMPTY=1234} - Checks if string is not empty.
+ * @infer {(number|null)} msg {INT8|INT16} - Check if number.
  * @inferid foo
  */
 function foo(msg, id, send) {
@@ -18,4 +19,4 @@ function foo(msg, id, send) {
 }
 
 // Example Normal Call
-foo('test', 1234, true);
+foo('', 1234, true);

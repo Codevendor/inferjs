@@ -5,6 +5,6 @@
  */
 
 // Error Types
-export { InferError } from "./infer-error.mjs";
+export { InferRuleError } from "./infer-rule-error.mjs";
 export { InferTypeError } from "./infer-type-error.mjs";
 export { InferUnhandledTagError } from "./infer-unhandled-tag-error.mjs";

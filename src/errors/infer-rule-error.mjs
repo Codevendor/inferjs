@@ -4,11 +4,14 @@ import { numberRepresent, type_of } from "../helpers/helpers.mjs";
 
 /** 
  * For handling inferjs errors.
- * @class InferError
+ * @class InferRuleError
  * @category errors
  * @extends Error
  */
-export class InferError extends Error {
+export class InferRuleError extends Error {
+
+    /** Returns the error name. */
+    get name() { return this.constructor.name }
 
     constructor() {
         

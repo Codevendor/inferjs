@@ -59,10 +59,7 @@ export class InferCompiler {
     /** Constructor for the InferCompiler. */
     constructor() {
 
-        this.#source = {
-            globals: {},
-            infers: {}
-        };
+        this.reset();
 
     }
 
@@ -204,33 +201,83 @@ export class InferCompiler {
 
     }
 
+    /** Resets the the InferCompiler. */
+    reset() {
 
+        this.#source = {
+            globals: {},
+            infers: {}
+        };
+
+    }
 
     /**
-     * The file to parse and look for infers.
-     * @param {string} inputFile - The file path to parse.
+     * Parses a file that conatins an array list of input file paths and outputs an infer file.
+     * @param {string} inputFileList - The filepath that contains an array list of file paths to input.
+     * @param {object} inputFileOptions - The input list options for each input file.
      * @param {string} outputFile - The file path to create the infer file.
+     * @param {object} outputFileOptions - The output file options.
      */
-    async parseFile(inputFile, inputFileOptions = { encoding: 'utf8' }, outputFile, outputFileOptions = {}) {
+    async parseFileList(inputFileList, inputFileOptions, outputFile, outputFileOptions = {}) {
 
-        if (!path.isAbsolute(inputFile)) {
-            inputFile = path.resolve(inputFile);
+        // Check types
+        if (typeof inputFileList !== 'string') throw new TypeError(`Incorrect type for method parseFileList, parameter inputFileList must be a string!`);
+        if (typeof inputFileOptions !== 'object') throw new TypeError(`Incorrect type for method parseFileList, parameter inputFileOptions must be an object!`);
+        if (typeof outputFile !== 'string') throw new TypeError(`Incorrect type for method parseFileList, parameter outputFile must be an string!`);
+        if (typeof outputFileOptions !== 'object') throw new TypeError(`Incorrect type for method parseFileList, parameter outputFileOptions must be an object!`);
+
+        // Check if inputFile is absolute path.
+        if (!path.isAbsolute(inputFileList)) {
+            inputFileList = path.resolve(inputFileList);
         }
 
-        console.log(`Loading file: ${inputFile}...`);
+        console.log(`Loading inputFileList: ${inputFileList} ...`);
 
         // Read in file
-        const readResults = await InferCompiler.readFile(inputFile, inputFileOptions);
+        const readResults = await InferCompiler.readFile(inputFileList, inputFileOptions);
 
         // Throw Err
         if (!!readResults.err) throw readResults.err;
 
-        console.log(`Parsing file: ${inputFile}...`);
+        // Convert readResults to string
+        readResults.data = readResults.data.toString();
 
-        // Parse file to object
-        this.#parse(inputFile, readResults.data);
+        // Split the file lines
+        const lines = readResults.data.split("\n").map(item => item.trim());
 
-        console.log(`Writing output file: ${outputFile}...`);
+        // Loop through file newlines
+        for (let i = 0; i < lines.length; i++) {
+
+            let inputFile = lines[i];
+
+            // Check if inputFile is absolute path.
+            if (!path.isAbsolute(inputFile)) {
+                inputFile = path.resolve(inputFile);
+            }
+
+            console.log(`Loading file: ${inputFile} ...`);
+
+            // Read in file
+            const readResults2 = await InferCompiler.readFile(inputFile, 'utf8');
+
+            // Throw Err
+            if (!!readResults2.err) throw readResults2.err;
+
+            // Convert readResults2 to string
+            readResults2.data = readResults2.data.toString();
+
+            console.log(`Parsing file: ${inputFile} ...`);
+
+            // Parse file to object
+            this.#parse(inputFile, readResults2.data);
+
+        }
+
+        if (!path.isAbsolute(outputFile)) {
+            outputFile = path.resolve(outputFile);
+        }
+
+        console.log(`Writing output file: ${outputFile} ...`);
 
         // Write file to output file with json
         const writeResults = await InferCompiler.writeFile(outputFile, InferCompiler.buildInferFile(this.#source), outputFileOptions);
@@ -239,6 +286,120 @@ export class InferCompiler {
         if (!!writeResults.err) throw writeResults.err;
 
         console.log(`Finished`)
+
+    }
+
+    /**
+     * Parses an array list of input file paths and outputs an infer file.
+     * @param {array} inputList - The array list of file paths to input.
+     * @param {object} inputFileOptions - The input list options for each input file.
+     * @param {string} outputFile - The file path to create the infer file.
+     * @param {object} outputFileOptions - The output file options.
+     */
+    async parseList(inputList, inputFileOptions, outputFile, outputFileOptions = {}) {
+
+        // Check types
+        if (typeof inputList !== 'object' || !Array.isArray(inputList)) throw new TypeError(`Incorrect type for method parseList, parameter inputList must be an array!`);
+        if (typeof inputFileOptions !== 'object') throw new TypeError(`Incorrect type for method parseList, parameter inputFileOptions must be an object!`);
+        if (typeof outputFile !== 'string') throw new TypeError(`Incorrect type for method parseList, parameter outputFile must be an string!`);
+        if (typeof outputFileOptions !== 'object') throw new TypeError(`Incorrect type for method parseList, parameter outputFileOptions must be an object!`);
+
+        console.log(`Loading inputList: ${inputList} ...`);
+
+        for (let i = 0; i < inputList.length; i++) {
+
+            // Get the file
+            let inputFile = inputList[i];
+
+            // Check if inputFile is absolute path.
+            if (!path.isAbsolute(inputFile)) {
+                inputFile = path.resolve(inputFile);
+            }
+
+            console.log(`Loading file: ${inputFile} ...`);
+
+            // Read in file
+            const readResults = await InferCompiler.readFile(inputFile, inputFileOptions);
+
+            // Throw Err
+            if (!!readResults.err) throw readResults.err;
+
+            // Convert readResults to string
+            readResults.data = readResults.data.toString();
+
+            console.log(`Parsing file: ${inputFile} ...`);
+
+            // Parse file to object
+            this.#parse(inputFile, readResults.data);
+
+        }
+
+        if (!path.isAbsolute(outputFile)) {
+            outputFile = path.resolve(outputFile);
+        }
+
+        console.log(`Writing output file: ${outputFile} ...`);
+
+        // Write file to output file with json
+        const writeResults = await InferCompiler.writeFile(outputFile, InferCompiler.buildInferFile(this.#source), outputFileOptions);
+
+        // Throw err
+        if (!!writeResults.err) throw writeResults.err;
+
+        console.log(`Finished`);
+
+    }
+
+
+    /**
+     * The file to parse and look for infers.
+     * @param {string} inputFile - The file path to parse.
+     * @param {object} inputFileOptions - 
+     * @param {string} outputFile - The file path to create the infer file.
+     * @param {object} outputFileOptions - The output file options.
+     */
+    async parseFile(inputFile, inputFileOptions = { encoding: 'utf8' }, outputFile, outputFileOptions = {}) {
+
+        // Check types
+        if (typeof inputFile !== 'string') throw new TypeError(`Incorrect type for method parseFile, parameter inputFile must be a string!`);
+        if (typeof inputFileOptions !== 'object') throw new TypeError(`Incorrect type for method parseFile, parameter inputFileOptions must be an object!`);
+        if (typeof outputFile !== 'string') throw new TypeError(`Incorrect type for method parseFile, parameter outputFile must be an string!`);
+        if (typeof outputFileOptions !== 'object') throw new TypeError(`Incorrect type for method parseFile, parameter outputFileOptions must be an object!`);
+
+        // Check if inputFile is absolute path.
+        if (!path.isAbsolute(inputFile)) {
+            inputFile = path.resolve(inputFile);
+        }
+
+        console.log(`Loading file: ${inputFile} ...`);
+
+        // Read in file
+        const readResults = await InferCompiler.readFile(inputFile, inputFileOptions);
+
+        // Throw Err
+        if (!!readResults.err) throw readResults.err;
+
+        // Convert readResults to string
+        readResults.data = readResults.data.toString();
+
+        console.log(`Parsing file: ${inputFile} ...`);
+
+        // Parse file to object
+        this.#parse(inputFile, readResults.data);
+
+        if (!path.isAbsolute(outputFile)) {
+            outputFile = path.resolve(outputFile);
+        }
+
+        console.log(`Writing output file: ${outputFile} ...`);
+
+        // Write file to output file with json
+        const writeResults = await InferCompiler.writeFile(outputFile, InferCompiler.buildInferFile(this.#source), outputFileOptions);
+
+        // Throw err
+        if (!!writeResults.err) throw writeResults.err;
+
+        console.log(`Finished`);
     }
 
     /**
@@ -250,6 +411,13 @@ export class InferCompiler {
      */
     async parseDirectory(inputDirectory, inputFileOptions = {}, outputFile, outputFileOptions = {}) {
 
+        // Check types
+        if (typeof inputDirectory !== 'string') throw new TypeError(`Incorrect type for method parseFile, parameter inputDirectory must be a string!`);
+        if (typeof inputFileOptions !== 'object') throw new TypeError(`Incorrect type for method parseFile, parameter inputFileOptions must be an object!`);
+        if (typeof outputFile !== 'string') throw new TypeError(`Incorrect type for method parseFile, parameter outputFile must be an string!`);
+        if (typeof outputFileOptions !== 'object') throw new TypeError(`Incorrect type for method parseFile, parameter outputFileOptions must be an object!`);
+
+        // Check if inputDirectory is absolute path.
         if (!path.isAbsolute(inputDirectory)) {
             inputDirectory = path.resolve(inputDirectory);
         }
@@ -259,24 +427,36 @@ export class InferCompiler {
 
         for (let i = 0; i < files.length; i++) {
 
-            const file = files[i];
+            let inputFile = files[i];
 
-            console.log(`Loading file: ${file}...`);
+            // Check if inputFile is absolute path.
+            if (!path.isAbsolute(inputFile)) {
+                inputFile = path.resolve(inputFile);
+            }
+
+            console.log(`Loading file: ${inputFile} ...`);
 
             // Read in file
-            const readResults = await InferCompiler.readFile(file, 'utf8');
+            const readResults = await InferCompiler.readFile(inputFile, 'utf8');
 
             // Throw Err
             if (!!readResults.err) throw readResults.err;
 
-            console.log(`Parsing file: ${file}...`);
+            // Convert readResults to string
+            readResults.data = readResults.data.toString();
+
+            console.log(`Parsing file: ${inputFile} ...`);
 
             // Parse file to object
-            this.#parse(file, readResults.data);
+            this.#parse(inputFile, readResults.data);
 
         }
 
-        console.log(`Writing output file: ${outputFile}...`);
+        if (!path.isAbsolute(outputFile)) {
+            outputFile = path.resolve(outputFile);
+        }
+
+        console.log(`Writing output file: ${outputFile} ...`);
 
         // Write file to output file with json
         const writeResults = await InferCompiler.writeFile(outputFile, InferCompiler.buildInferFile(this.#source), outputFileOptions);
@@ -316,11 +496,16 @@ export class InferCompiler {
             // Throw error
             if (!!results.err) throw results.err;
 
-            if (results.stats.isDirectory() && inputFileOptions.hasOwnProperty('recursive') && inputFileOptions.recursive) {
+            if (results.stats.isDirectory() && inputFileOptions.hasOwnProperty('recursive') && inputFileOptions.recursive.toString().toLowerCase()==='true') {
 
                 // Add recursive files to list;
                 const rfiles = await this.#getDirectoryList(itemPath, inputFileOptions);
                 files = files.concat(rfiles);
+                continue;
+
+            } else if (results.stats.isDirectory()) {
+
+                continue;
 
             } else {
 
@@ -333,18 +518,26 @@ export class InferCompiler {
                         // Check if allowedExtensions is string or array of string;
                         if (typeof inputFileOptions.allowedExtensions === 'string') {
 
+                            let item = inputFileOptions.allowedExtensions.trim().toLowerCase();
+
+                            if (item && item[0] !== '.') item = '.' + item;
+
                             // Convert to array for checking
-                            inputFileOptions.allowedExtensions = [inputFileOptions.allowedExtensions.toLowerCase()];
+                            inputFileOptions.allowedExtensions = [item];
 
                         } else if (typeof inputFileOptions.allowedExtensions === 'object' && Array.isArray(inputFileOptions.allowedExtensions)) {
 
                             // Convert list to all lowercase
-                            inputFileOptions.allowedExtensions = inputFileOptions.allowedExtensions.map(item => item.toLowerCase());
+                            inputFileOptions.allowedExtensions = inputFileOptions.allowedExtensions.map(item => {
+                                item = item.trim().toLowerCase();
+                                if (item[0] !== '.') item = '.' + item;
+                                return item;
+                            });
 
                         } else {
 
                             // Throw error
-                            throw new TypeError(`Infer-Compiler error: method parseDirectory(inputFileOptions.allowedExtensions) must be a string or array of file extensions!`);
+                            throw new TypeError(`Method parseDirectory(inputFileOptions.allowedExtensions) must be a string or array of file extensions!`);
 
                         }
 
@@ -890,7 +1083,8 @@ async function main() {
     const shortList = {
         f: { name: 'action', value: 'parse-file' },
         d: { name: 'action', value: 'parse-dir' },
-        l: { name: 'action', value: 'parse-list' },
+        a: { name: 'action', value: 'parse-list' },
+        l: { name: 'action', value: 'parse-file-list' },
         h: 'help'
     };
 
@@ -905,6 +1099,9 @@ async function main() {
 
     try {
 
+        // Declare variables
+        let input, inputOptions, output, outputOptions, ic, results;
+
         if (!args.hasOwnProperty('action')) throw new Error(`Missing action command`);
 
         switch (args['action'].toLowerCase()) {
@@ -912,17 +1109,17 @@ async function main() {
             // Parses a single js file
             case 'parse-file':
 
-                if (!args.hasOwnProperty('input')) throw new Error(`Missing required argument: <input> for parse-file`);
+                if (!args.hasOwnProperty('input-file')) throw new Error(`Missing required argument: <input-file> for parse-file`);
 
-                const input = args['input'];
+                input = args['input-file'];
 
-                const inputOptions = { encoding: 'utf8' };
-                if (args.hasOwnProperty('input-options-encoding')) inputOptions['encoding'] = args['input-options-encoding'];
+                inputOptions = { encoding: 'utf8' };
+                if (args.hasOwnProperty('input-file-options-encoding')) inputOptions['encoding'] = args['input-file-options-encoding'];
 
-                const outputOptions = { flag: "wx" };
-                if (args.hasOwnProperty('output-options-flag')) outputOptions['flag'] = args['output-options-flag'];
+                outputOptions = { flag: "wx" };
+                if (args.hasOwnProperty('output-file-options-flag')) outputOptions['flag'] = args['output-file-options-flag'];
 
-                let output = args['output'];
+                output = args['output-file'];
                 if (!output || typeof output !== 'string' || output.trim() === '') {
 
                     // Output to input file directory
@@ -930,10 +1127,10 @@ async function main() {
                 }
 
                 // Get class
-                const ic = new InferCompiler();
+                ic = new InferCompiler();
 
                 // Async Parse file 
-                const results = await ic.parseFile(input, inputOptions, output, outputOptions).catch((err) => {
+                results = await ic.parseFile(input, inputOptions, output, outputOptions).catch((err) => {
                     throw new Error(`Processing action parse-file had internal error: ${err}`);
                 });
 
@@ -942,37 +1139,106 @@ async function main() {
             // Parses a directory of file
             case 'parse-dir':
 
-                if (!args.hasOwnProperty('input')) throw new Error(`Missing required argument: <input> for parse-dir`);
+                if (!args.hasOwnProperty('input-dir')) throw new Error(`Missing required argument: <input-dir> for parse-dir`);
 
-                const input2 = args['input'];
+                input = args['input-dir'];
 
-                const inputOptions2 = { recursive: false, allowedExtensions: ["js", "mjs"] };
-                if (args.hasOwnProperty('input-options-recursive')) inputOptions2['recursive'] = args['input-options-recursive'];
-                if (args.hasOwnProperty('input-options-allowedExtensions')) inputOptions2['allowedExtensions'] = args['input-options-allowedExtensions'];
+                inputOptions = { encoding: 'utf8', recursive: false, allowedExtensions: ["js", "mjs"] };
+                if (args.hasOwnProperty('input-dir-options-recursive')) inputOptions['recursive'] = args['input-dir-options-recursive'];
+                if (args.hasOwnProperty('input-dir-options-allowedExtensions')) inputOptions['allowedExtensions'] = args['input-dir-options-allowedExtensions'];
 
-                const outputOptions2 = { flag: "wx" };
-                if (args.hasOwnProperty('output-options-flag')) outputOptions2['flag'] = args['output-options-flag'];
+                outputOptions = { flag: "wx" };
+                if (args.hasOwnProperty('output-file-options-flag')) outputOptions['flag'] = args['output-file-options-flag'];
 
-                let output2 = args['output'];
-                if (!output2 || typeof output2 !== 'string' || output2.trim() === '') {
+                output = args['output-file'];
+                if (!output || typeof output !== 'string' || output.trim() === '') {
 
                     // Output to input file directory
-                    output2 = path.dirname(input2) + '/output.mjs';
+                    output = path.dirname(input) + '/output.mjs';
                 }
 
                 // Get class
-                const ic2 = new InferCompiler();
+                ic = new InferCompiler();
 
                 // Async Parse file 
-                const results2 = await ic.parseDirectory(input2, inputOptions2, output2, outputOptions2, inputOptions2.recursive).catch((err) => {
+                results = await ic.parseDirectory(input, inputOptions, output, outputOptions).catch((err) => {
                     throw new Error(`Processing action parse-dir had internal error: ${err}`);
                 });
 
+                break;
+
+            // Parses an arrray list of file paths
+            case 'parse-list':
+
+                if (!args.hasOwnProperty('input-list')) throw new Error(`Missing required argument: <input-list> for parse-list`);
+
+                // Parse List
+                input = args['input-list'].split(',').map(item => {
+
+                    item = item.trim();
+
+                    if (item.startsWith('"') && item.endsWith('"')) return item.slice(1, -1).trim();
+                    if (item.startsWith('`') && item.endsWith('`')) return item.slice(1, -1).trim();
+                    if (item.startsWith("'") && item.endsWith("'")) return item.slice(1, -1).trim();
+                    if (item.startsWith("'")) return item.slice(1).trim();
+                    if (item.endsWith("'")) return item.slice(0, -1).trim();
+
+                    return item;
+                });
+
+                inputOptions = { encoding: 'utf8' };
+                if (args.hasOwnProperty('input-list-options-recursive')) inputOptions['recursive'] = args['input-list-options-recursive'];
+                if (args.hasOwnProperty('input-list-options-allowedExtensions')) inputOptions['allowedExtensions'] = args['input-list-options-allowedExtensions'];
+
+                outputOptions = { flag: "wx" };
+                if (args.hasOwnProperty('output-file-options-flag')) outputOptions['flag'] = args['output-file-options-flag'];
+
+                output = args['output-file'];
+                if (!output || typeof output !== 'string' || output.trim() === '') {
+
+                    // Output to input file directory
+                    output = path.dirname(input) + '/output.mjs';
+                }
+
+                // Get class
+                ic = new InferCompiler();
+
+                // Async Parse file 
+                results = await ic.parseList(input, inputOptions, output, outputOptions).catch((err) => {
+                    throw new Error(`Processing action parse-list had internal error: ${err}`);
+                });
 
                 break;
 
-            // Parses a list of file path
-            case 'parse-list':
+            // Parses a file list
+            case 'parse-file-list':
+
+                if (!args.hasOwnProperty('input-file-list')) throw new Error(`Missing required argument: <input-file-list> for parse-file-list`);
+
+                // Parse List
+                input = args['input-file-list'];
+
+                inputOptions = { encoding: 'utf8' };
+                if (args.hasOwnProperty('input-file-list-options-recursive')) inputOptions['recursive'] = args['input-file-list-options-recursive'];
+                if (args.hasOwnProperty('input-file-list-options-allowedExtensions')) inputOptions['allowedExtensions'] = args['input-file-list-options-allowedExtensions'];
+
+                outputOptions = { flag: "wx" };
+                if (args.hasOwnProperty('output-file-options-flag')) outputOptions['flag'] = args['output-file-options-flag'];
+
+                output = args['output-file'];
+                if (!output || typeof output !== 'string' || output.trim() === '') {
+
+                    // Output to input file directory
+                    output = path.dirname(input) + '/output.mjs';
+                }
+
+                // Get class
+                ic = new InferCompiler();
+
+                // Async Parse file 
+                results = await ic.parseFileList(input, inputOptions, output, outputOptions).catch((err) => {
+                    throw new Error(`Processing action parse-list had internal error: ${err}`);
+                });
 
                 break;
 

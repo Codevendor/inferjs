@@ -1,0 +1,84 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch-Test1",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/tests/test1.mjs",
+            "args": [
+                "--config='./configs/dev.json'",
+                "--trace-warnings",
+                "start"
+            ],
+            "preLaunchTask": "Build-Test1",
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "InferCompiler-Launch-Test-Action-PARSE-FILE",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/src/compiler/infer-compiler.mjs",
+            "args": [
+                "-f",
+                "--input-file=./tests/test1.mjs",
+                "--output-file=./tests/infers/test1.infer.mjs",
+                "--output-file-options-flag=wx",
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "InferCompiler-Launch-Test-Action-PARSE-DIR",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/src/compiler/infer-compiler.mjs",
+            "args": [
+                "-d",
+                "--input-dir=./tests",
+                "--input-dir-options-recursive=true",
+                "--output-file=./tests/infers/test1.infer.mjs",
+                "--output-file-options-flag=wx",
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "InferCompiler-Launch-Test-Action-PARSE-LIST",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/src/compiler/infer-compiler.mjs",
+            "args": [
+                "-a",
+                "--input-list='./tests/test1.mjs','./tests/test2.mjs'",
+                "--output-file=./tests/infers/test1.infer.mjs",
+                "--output-file-options-flag=wx",
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "InferCompiler-Launch-Test-Action-PARSE-FILE-LIST",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/src/compiler/infer-compiler.mjs",
+            "args": [
+                "-l",
+                "--input-file-list=./tests/list.txt",
+                "--output-file=./tests/infers/test1.infer.mjs",
+                "--output-file-options-flag=wx",
+            ]
+        }
+    ]
+}

@@ -2,7 +2,7 @@
 
 // Imports
 import { type_of, validate } from "../helpers/helpers.mjs";
-import { InferError, InferTypeError } from "../errors/errors.mjs";
+import { InferRuleError, InferTypeError } from "../errors/errors.mjs";
 //import { getMethodSignature } from "./get-method-signature.js";
 //import { parseMethodDefiniton } from "./parse-method-definition.js";
 //import { parseMethodParamOrder } from "./parse-method-param-order.js";
@@ -69,8 +69,8 @@ export class Infer {
                     return new InferTypeError(inf, i, argType + '|' + argTypeExt);
                 }
 
-                console.log('Key: ', param);
-                console.log('test');
+                //console.log('Key: ', param);
+                //console.log('test');
 
                 // Get unique actual types
                 const actualTypes = [argType, argTypeExt].filter((v, i, a) => a.indexOf(v) == i);
@@ -91,7 +91,7 @@ export class Infer {
 
                             // Method for throwing
                             const THROW = () => {
-                                throw new InferError(inf);
+                                throw new InferRuleError(inf);
                             };
 
                             switch (infer) {
