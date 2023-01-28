@@ -1,22 +1,6 @@
 
 <div id="top"></div>
 
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -38,6 +22,12 @@
   </p>
 </div>
 
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 <!-- TABLE OF CONTENTS -->
@@ -45,7 +35,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-inferjs">About The Project</a>
+      <a href="#inferjs-overview">InferJS Overview</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -70,7 +60,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />About InferJS
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS Overview
 
 [**InferJS**](https://github.com/Codevendor/inferjs) allows you to easily add runtime type checking by utilizing **JSDoc** multiline comments in both client and server side **JavaScript**. [**InferJS**](https://github.com/Codevendor/inferjs) is provided with an  [**InferCompiler**](https://github.com/Codevendor/inferjs). The compiler interprets your **JSDoc** comments from your source code and compiles them into an **InferFile** that you can import into any **JavaScript** file. With this library, you can also enable **Extended Type Checking** and narrow down your data types. Check out the examples below, to see how [**InferJS**](https://github.com/Codevendor/inferjs) can save you time and money from costly bugs through development and release.
 
