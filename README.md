@@ -265,7 +265,7 @@ _For more examples, please refer to the [Documentation](https://inferjs.com)_
 <!-- ROADMAP -->
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Roadmap
 - [[ March 2023 ]()] - First Release Date - Possible 
-- [[ Feb 2023 ]()] - Make Distributon Plan and Library Versioning
+- [[ Feb 2023 ]()] - Make Distributon Plan and Library Versioning for browser with Webpack and Terser for JS minification.
 - [[ Jan 25, 2023 ]()] - Under Development and Testing
 
 
