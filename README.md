@@ -185,6 +185,75 @@ The **@infer** tag is so versatile you can attach it to multiple types in a grou
  */
 ```
 
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS-Library: Tag @infer Expectation Types
+
+There are many extended expectation types for narrowing your types down with your **@infer** tags.
+
+Below is a list of common rule expectation types:
+
+| Expectation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description |
+| :-- | :-- |
+| [STRING-NOT-EMPTY]() | Checks if a string is not empty. |
+| [STRING-EMPTY]() | Checks if a string is empty. |
+| [ISBOOL]() | Checks if a string is a boolean, '[true]()', '[false]()', '[yes]()', '[no]()', '[on]()', '[off]()' '[0]()', '[1]()'. |
+| [BETWEEN]() | Checks if number is between two numbers. |
+| [BETWEEN-INCLUSIVE]() | Checks if number is between two numbers and including equal to self. |
+| [BETWEEN-BIGINT]() | Checks if string is between two big integers. |
+| [BETWEEN-BIGINT-INCLUSIVE]() | Checks if a string is between two big integers including equal to self. |
+| [GREATER-THAN]() | Checks if value is greater than. |
+| [GREATER-THAN-EQUAL]() | Checks if value is greater than equal. |
+| [LESS-THAN]() | Checks if value is less than. |
+| [LESS-THAN-EQUAL]() | Checks if value is less than equal. |
+| [REGEX]() | Checks if matches a regular expression. |
+| [ALPHA]() | Checks if alpha characters. |
+| [ISNUMBER]() | Checks if a string is a number. |
+| [ISNUMERIC]() | Checks if a string is numeric. |
+| [ALPHA-NUMERIC]() | Checks if a string is alpha numeric. | 
+| [IN-ARRAY-CI]() | Checks if in array list case insensitive. |
+| [IN-ARRAY]() | Checks if in array list case sensitive. |
+| [NOT-IN-ARRAY-CI]() | Checks if not in array list case insensitive. |
+| [NOT-IN-ARRAY]() | Checks if not in array list case sensitive. |
+| [EXTENDS-ALL]() | Checks if object extends all types. |
+| [EXTENDS]() | Checks if object extends type. |
+| [PROPS]() | Checks if object contains properties. |
+| [ARRAY-NOT-EMPTY]() | Checks if array not empty. |
+| [ARRAY-EMPTY]() | Checks if array is empty. |
+| [ARRAY-TYPES]() | Checks if array items of are of exepected types. |
+| [INT8]() | Checks for INT8: [-128]() to [127]() |
+| [CHAR]() | ^ |
+| [UINT8]() | Checks for UINT8: [0]() to [255]() |
+| [UCHAR]() | ^ |
+| [UNSIGNED-CHAR]() | ^ |
+| [INT16]() | Checks for INT16: [-32768]() to [32767]() |
+| [SHORT]() | ^ |
+| [SHORT-INT]() | ^ |
+| [SIGNED-SHORT]() | ^ |
+| [UINT16]() | Check for UINT16: [0]() to [65535]() |
+| [UNSIGNED-SHORT]() | ^ |
+| [UNSIGNED-SHORT-INT]() | ^ |
+| [USHORT]() | ^ |
+| [INT32]() | Check for INT32: [-2147483648]() to [2147483647]() |
+| [SIGNED-INT]() | ^ |
+| [INT]() | ^ |
+| [UINT32]() | Check for UINT32: [0]() to [4294967295]() |
+| [UNSIGNED-INT]() | ^ |
+| [UINT]() | ^ |
+| [INT64]() | Check for INT64: [-9223372036854775808]() to [9223372036854775807]() |
+| [SIGNED-LONG]() | ^ |
+| [SIGNED-LONG-LONG]() | ^ |
+| [LONG]() | ^ |
+| [LONG-LONG]() | ^ |
+| [UINT64]() | Check for UINT64: [0]() to [18446744073709551615]() |
+| [UNSIGNED-LONG]() | ^ |
+| [UNSIGNED-LONG-LONG]() | ^ |
+| [ULONG]() | ^ |
+
+
+
+
+
+
+
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS-Library: Linking with Tag @inferid
 
 The tag **@inferid** is a unique identifier for linking [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src) behind the scenes. It is required for each **method**, **property** or **field**, you would like to infer. 

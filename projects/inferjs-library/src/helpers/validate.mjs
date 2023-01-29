@@ -61,7 +61,7 @@ export function validate(method, value, evalue) {
         case 'STRING-EMPTY': return (value.toString().trim() === '');
 
         // Checks if value string is of boolean type
-        case 'BOOL': return (parseBool(value) === -1) ? false : true;
+        case 'ISBOOL': return (parseBool(value) === -1) ? false : true;
 
         // Checks if value between
         case 'BETWEEN': return between(value, evalue);
@@ -106,22 +106,22 @@ export function validate(method, value, evalue) {
         case 'ALPHA-NUMERIC': return REG_ALPHA_NUMERIC.test(value.toString());
 
         // Checks if case insensitive value is in evalue array list
-        case 'IN-LIST-CI':
+        case 'IN-ARRAY-CI':
 
             evalue = evalue.join('|').toLowerCase().split('|');
             value = value.toLowerCase();
 
         // Checks if case sensitive value is in evalue array list
-        case 'IN-LIST': return evalue.includes(value);
+        case 'IN-ARRAY': return evalue.includes(value);
 
         // Checks if case insensitive value is not in evalue array list
-        case 'NOT-IN-LIST-CI':
+        case 'NOT-IN-ARRAY-CI':
 
             evalue = evalue.join('|').toLowerCase().split('|');
             value = value.toLowerCase();
 
         // Checks if case sensitive value is not in evalue array list
-        case 'NOT-IN-LIST': return !evalue.includes(value);
+        case 'NOT-IN-ARRAY': return !evalue.includes(value);
 
         // Check object extends all classes
         case 'EXTENDS-ALL':
@@ -197,7 +197,7 @@ export function validate(method, value, evalue) {
             return true;
 
         // Check for UINT8: 0 to 255
-        case 'UNSIGNED CHAR':
+        case 'UNSIGNED-CHAR':
         case 'UCHAR':
         case 'UINT8':
 
@@ -206,16 +206,16 @@ export function validate(method, value, evalue) {
 
         // Check for INT16: -32768 to 32767
         case 'SHORT':
-        case 'SHORT INT':
-        case 'SIGNED SHORT INT':
+        case 'SHORT-INT':
+        case 'SIGNED-SHORT-INT':
         case 'INT16':
 
             if (!REG_NUMERIC.test(value.toString()) || !between(value, [-32768, 32767], true)) return false;
             return true;
 
         // Check for UINT16: 0 to 65535
-        case 'UNSIGNED SHORT':
-        case 'UNSIGNED SHORT INT':
+        case 'UNSIGNED-SHORT':
+        case 'UNSIGNED-SHORT-INT':
         case 'USHORT':
         case 'UINT16':
 
@@ -223,7 +223,7 @@ export function validate(method, value, evalue) {
             return true;
 
         // Check for INT32: -2147483648 to 2147483647
-        case 'SIGNED INT':
+        case 'SIGNED-INT':
         case 'INT':
         case 'INT32':
 
@@ -231,7 +231,7 @@ export function validate(method, value, evalue) {
             return true;
 
         // Check for UINT32: 0 to 4294967295
-        case 'UNSIGNED INT':
+        case 'UNSIGNED-INT':
         case 'UINT':
         case 'UINT32':
 
@@ -239,18 +239,18 @@ export function validate(method, value, evalue) {
             return true;
 
         // Check for INT64: -9223372036854775808 to 9223372036854775807
-        case 'SIGNED LONG':
-        case 'SIGNED LONG LONG':
+        case 'SIGNED-LONG':
+        case 'SIGNED-LONG-LONG':
         case 'LONG':
-        case 'LONG LONG':
+        case 'LONG-LONG':
         case 'INT64':
 
             if (!REG_NUMERIC.test(value.toString()) || !betweenBigInt(BigInt(value), [BigInt('-9223372036854775808'), BigInt('9223372036854775807')], true)) return false;
             return true;
 
         // Check for UINT64: 0 to 18446744073709551615
-        case 'UNSIGNED LONG':
-        case 'UNSIGNED LONG LONG':
+        case 'UNSIGNED-LONG':
+        case 'UNSIGNED-LONG-LONG':
         case 'ULONG':
         case 'UINT64':
 

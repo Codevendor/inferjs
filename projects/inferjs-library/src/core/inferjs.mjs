@@ -108,7 +108,7 @@ export class InferJS {
                                     break;
 
                                 // Checks if inferValue string is of boolean type
-                                case 'BOOL':
+                                case 'ISBOOL':
 
                                     if (actualType !== 'string' && actualType !== 'boolean' && actualType !== 'number') break;
                                     if (!validate(infer, argValue, inferValue)) THROW();
@@ -206,28 +206,28 @@ export class InferJS {
                                     break;
 
                                 // Checks if case insensitive inferValue is in EinferValue array list
-                                case 'IN-LIST-CI':
+                                case 'IN-ARRAY-CI':
 
                                     if (actualType !== 'string') break;
                                     if (!validate(infer, argValue, inferValue)) THROW();
                                     break;
 
                                 // Checks if case sensitive inferValue is in EinferValue array list
-                                case 'IN-LIST':
+                                case 'IN-ARRAY':
 
                                     if (actualType !== 'string') break;
                                     if (!validate(infer, argValue, inferValue)) THROW();
                                     break;
 
                                 // Checks if case insensitive inferValue is not in EinferValue array list
-                                case 'NOT-IN-LIST-CI':
+                                case 'NOT-IN-ARRAY-CI':
 
                                     if (actualType !== 'string') break;
                                     if (!validate(infer, argValue, inferValue)) THROW();
                                     break;
 
                                 // Checks if case sensitive inferValue is not in EinferValue array list
-                                case 'NOT-IN-LIST':
+                                case 'NOT-IN-ARRAY':
 
                                     if (actualType !== 'string') break;
                                     if (!validate(infer, argValue, inferValue)) THROW();
@@ -284,7 +284,7 @@ export class InferJS {
                                     break;
 
                                 // Check for UINT8: 0 to 255
-                                case 'UNSIGNED CHAR':
+                                case 'UNSIGNED-CHAR':
                                 case 'UCHAR':
                                 case 'UINT8':
 
@@ -294,8 +294,8 @@ export class InferJS {
 
                                 // Check for INT16: -32768 to 32767
                                 case 'SHORT':
-                                case 'SHORT INT':
-                                case 'SIGNED SHORT INT':
+                                case 'SHORT-INT':
+                                case 'SIGNED-SHORT-INT':
                                 case 'INT16':
 
                                     if (actualType !== 'number' && actualType !== 'string') break;
@@ -303,8 +303,8 @@ export class InferJS {
                                     break;
 
                                 // Check for UINT16: 0 to 65535
-                                case 'UNSIGNED SHORT':
-                                case 'UNSIGNED SHORT INT':
+                                case 'UNSIGNED-SHORT':
+                                case 'UNSIGNED-SHORT-INT':
                                 case 'USHORT':
                                 case 'UINT16':
 
@@ -313,7 +313,7 @@ export class InferJS {
                                     break;
 
                                 // Check for INT32: -2147483648 to 2147483647
-                                case 'SIGNED INT':
+                                case 'SIGNED-INT':
                                 case 'INT':
                                 case 'INT32':
 
@@ -322,7 +322,7 @@ export class InferJS {
                                     break;
 
                                 // Check for UINT32: 0 to 4294967295
-                                case 'UNSIGNED INT':
+                                case 'UNSIGNED-INT':
                                 case 'UINT':
                                 case 'UINT32':
 
@@ -331,10 +331,10 @@ export class InferJS {
                                     break;
 
                                 // Check for INT64: -9223372036854775808 to 9223372036854775807
-                                case 'SIGNED LONG':
-                                case 'SIGNED LONG LONG':
+                                case 'SIGNED-LONG':
+                                case 'SIGNED-LONG-LONG':
                                 case 'LONG':
-                                case 'LONG LONG':
+                                case 'LONG-LONG':
                                 case 'INT64':
 
                                     if (actualType !== 'bigint' && actualType !== 'string') break;
@@ -342,8 +342,8 @@ export class InferJS {
                                     break;
 
                                 // Check for UINT64: 0 to 18446744073709551615
-                                case 'UNSIGNED LONG':
-                                case 'UNSIGNED LONG LONG':
+                                case 'UNSIGNED-LONG':
+                                case 'UNSIGNED-LONG-LONG':
                                 case 'ULONG':
                                 case 'UINT64':
 
