@@ -67,9 +67,9 @@
 
 ### Built With
 * [InferJS Version 0.0.1](https://inferjs.com/)
-* [JSDoc Version 3](https://jsdoc.app/)
+* [JSDoc Version 3+](https://jsdoc.app/)
 * [Node.js Version 18+](https://nodejs.org/)
-
+* [Webpack Version 5+](https://webpack.js.org/)
 
 
 <!-- GETTING STARTED -->
@@ -272,6 +272,8 @@ _For more examples, please refer to the [Documentation](https://inferjs.com)_
 
 <!-- CHANGELOG -->
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Change Log
+
+- [[ Jan 29, 2023 ]()] - Changing the main **InferJS** repo structure to isolate projects and versioning.
 
 - [[ Jan 27, 2023 ]()] - Added in **InferCompiler** actions parse-list, parse-file-list. Removed bugs found in **InferCompiler** and setup testing per action in **.vscode** launch and task files.
 
