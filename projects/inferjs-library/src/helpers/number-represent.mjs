@@ -7,6 +7,7 @@ const deca = ['twent', 'thirt', 'fourt', 'fift', 'sixt', 'sevent', 'eight', 'nin
 
 /**
  * Changes a number into it's stringify representation, first, second, third, etc. 
+ * @module inferjs-library
  * @category helpers
  * @function numberRepresent
  * @param {number} src - The number 0 to 99.

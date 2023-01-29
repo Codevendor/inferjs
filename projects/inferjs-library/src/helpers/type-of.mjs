@@ -4,6 +4,7 @@ const REG_PARSE_OBJECT_STRING = /\[{0,1}([^\s\]]+)\s{0,}([^\s\]]+)\]{0,1}/;
 
 /**
  * Checks the type of a source.
+ * @module inferjs-library
  * @param {*} src - The source to type check.
  * @param {*} extended - Whether to extend the type checking and correct things wrong with type of.
  * @returns {string} - The string represent the type for the source.

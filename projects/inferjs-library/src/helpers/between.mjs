@@ -4,6 +4,7 @@ import { type_of } from "./type-of.mjs";
 
 /**
  * Checks if a number is between a min and max with inclusive.
+ * @module inferjs-library
  * @category helpers
  * @function between
  * @param {number} value - The number or bigint to check.
@@ -25,6 +26,7 @@ export function between(value, values, inclusive = false) {
 
 /**
  * Checks if a bigint is between a min and max with inclusive.
+ * @module inferjs-library
  * @category helpers
  * @function betweenBigInt
  * @param {bigint} value - The number or bigint to check.

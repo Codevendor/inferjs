@@ -13,6 +13,7 @@ const REG_NUMBER = new RegExp(`^[+-]{0,1}[0-9]{1,}[.]{0,1}[0-9]{0,}[e]{0,1}[+-]{
 
 /**
  * Validates a value by type.
+ * @module inferjs-library
  * @category helpers
  * @function validate
  * @param {string} method - The method to validate with.

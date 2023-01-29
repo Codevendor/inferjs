@@ -4,6 +4,7 @@ import { type_of } from "./type-of.mjs";
 
 /**
  * Checks if a string is numeric.
+ * @module inferjs-library
  * @category helpers
  * @function isNumeric
  * @param {number|string} src - The src to check if numeric.

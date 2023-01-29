@@ -4,6 +4,7 @@ import { type_of } from "./type-of.mjs";
 
 /**
  * Parses a string into a boolean.
+ * @module inferjs-library
  * @category helpers
  * @function parseBool
  * @param {(string|number|boolean)} src - A boolean, string boolean or number.
