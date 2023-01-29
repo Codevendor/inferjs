@@ -187,7 +187,7 @@ The **@infer** tag is so versatile you can attach it to multiple types in a grou
 
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS-Library: Linking with Tag @inferid
 
-The tag **@inferid** is a unique identifier for linking InferJS-Library behind the scenes. It is required for each **method**, **property** or **field**, you would like to infer. 
+The tag **@inferid** is a unique identifier for linking [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src) behind the scenes. It is required for each **method**, **property** or **field**, you would like to infer. 
 
 This special tag allows code to still work while **JavaScript** is **compressed/minified** or **obfuscated**. **Infers** are all stored in a precompiled **InferFile**. This makes it easy to write in your static data types and not have to worry about type checking them during **JavaScript Runtime**. 
 
