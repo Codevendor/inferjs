@@ -3,13 +3,13 @@
 import { numberRepresent, type_of } from "../helpers/helpers.mjs";
 
 /** 
- * For handling InferUnhandledTagError.
+ * For handling InferUnhandledError.
  * @module inferjs-library
- * @class InferUnhandledTagError
+ * @class InferUnhandledError
  * @category errors
  * @extends Error
  */
-export class InferUnhandledTagError extends Error {
+export class InferUnhandledError extends Error {
 
     constructor() {
 

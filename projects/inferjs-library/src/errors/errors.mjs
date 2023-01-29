@@ -7,4 +7,4 @@
 // Error Types
 export { InferExpectError } from "./infer-expect-error.mjs";
 export { InferTypeError } from "./infer-type-error.mjs";
-export { InferUnhandledTagError } from "./infer-unhandled-tag-error.mjs";
+export { InferUnhandledError } from "./infer-unhandled-error.mjs";
