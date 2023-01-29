@@ -83,196 +83,196 @@ export class InferJS {
 
                         for (let i3 = 0; i3 < infersArray.length; i3++) {
 
-                            const infer = infersArray[i3].toUpperCase();
-                            const inferValue = infers[infer].value;
+                            const inferExpectation = infersArray[i3].toUpperCase();
+                            const inferExpectationValue = infers[inferExpectation].value;
 
                             // Method for throwing
                             const THROW = () => {
-                                throw new InferExpectError(inf);
+                                throw new InferExpectError(inf, i, argType + '|' + argTypeExt, inferExpectation, argValue, inferExpectationValue);
                             };
 
-                            switch (infer) {
+                            switch (inferExpectation) {
 
                                 // Checks if string not empty
                                 case 'STRING-NOT-EMPTY':
 
                                     if (actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Checks if string is empty
                                 case 'STRING-EMPTY':
 
                                     if (actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
-                                // Checks if inferValue string is of boolean type
+                                // Checks if inferExpectationValue string is of boolean type
                                 case 'ISBOOL':
 
                                     if (actualType !== 'string' && actualType !== 'boolean' && actualType !== 'number') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
-                                // Checks if inferValue between
+                                // Checks if inferExpectationValue between
                                 case 'BETWEEN':
 
                                     if (actualType !== 'number') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
-                                // Checks if inferValue between inclusive
+                                // Checks if inferExpectationValue between inclusive
                                 case 'BETWEEN-INCLUSIVE':
 
                                     if (actualType !== 'number') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
-                                // Checks if bigint inferValue between
+                                // Checks if bigint inferExpectationValue between
                                 case 'BETWEEN-BIGINT':
 
                                     if (actualType !== 'bigint') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
-                                // Checks if bigint inferValue between inclusive
+                                // Checks if bigint inferExpectationValue between inclusive
                                 case 'BETWEEN-BIGINT-INCLUSIVE':
 
                                     if (actualType !== 'bigint') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
-                                // Checks if inferValue is greater than EinferValue
+                                // Checks if inferExpectationValue is greater than EinferExpectationValue
                                 case 'GREATER-THAN':
 
                                     if (actualType !== 'number' && actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
-                                // Checks if inferValue is greater than equal EinferValue
+                                // Checks if inferExpectationValue is greater than equal EinferExpectationValue
                                 case 'GREATER-THAN-EQUAL':
 
                                     if (actualType !== 'number' && actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
-                                // Checks if inferValue is less than EinferValue
+                                // Checks if inferExpectationValue is less than EinferExpectationValue
                                 case 'LESS-THAN':
 
                                     if (actualType !== 'number' && actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
-                                // Checks if inferValue is less than equal EinferValue
+                                // Checks if inferExpectationValue is less than equal EinferExpectationValue
                                 case 'LESS-THAN-EQUAL':
 
                                     if (actualType !== 'number' && actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Checks if matches regex pattern
                                 case 'REGEX':
 
                                     if (actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Checks if a string is ALPHA Characters
                                 case 'ALPHA':
 
                                     if (actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Checks if a string is a number        
                                 case 'ISNUMBER':
 
                                     if (actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Checks if a string is numeric
                                 case 'ISNUMERIC':
 
                                     if (actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Checks if string is alpha numeric.
                                 case 'ALPHA-NUMERIC':
 
                                     if (actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
-                                // Checks if case insensitive inferValue is in EinferValue array list
+                                // Checks if case insensitive inferExpectationValue is in EinferExpectationValue array list
                                 case 'IN-ARRAY-CI':
 
                                     if (actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
-                                // Checks if case sensitive inferValue is in EinferValue array list
+                                // Checks if case sensitive inferExpectationValue is in EinferExpectationValue array list
                                 case 'IN-ARRAY':
 
                                     if (actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
-                                // Checks if case insensitive inferValue is not in EinferValue array list
+                                // Checks if case insensitive inferExpectationValue is not in EinferExpectationValue array list
                                 case 'NOT-IN-ARRAY-CI':
 
                                     if (actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
-                                // Checks if case sensitive inferValue is not in EinferValue array list
+                                // Checks if case sensitive inferExpectationValue is not in EinferExpectationValue array list
                                 case 'NOT-IN-ARRAY':
 
                                     if (actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Check object extends all classes
                                 case 'EXTENDS-ALL':
 
                                     if (actualType !== 'object') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Check object extends at least one class
                                 case 'EXTENDS':
 
                                     if (actualType !== 'object') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
-                                // Checks if inferValue object contains case sensitive properties in EinferValue array list.
+                                // Checks if inferExpectationValue object contains case sensitive properties in EinferExpectationValue array list.
                                 case 'PROPS':
 
                                     if (actualType !== 'object') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Check if array is not empty.
                                 case 'ARRAY-NOT-EMPTY':
 
                                     if (actualType !== 'array') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Checks if array is empty.
                                 case 'ARRAY-EMPTY':
 
                                     if (actualType !== 'array') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Checks if array is of type list.
                                 case 'ARRAY-TYPES':
 
                                     if (actualType !== 'array') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Check for INT8: -128 to 127
@@ -280,7 +280,7 @@ export class InferJS {
                                 case 'INT8':
 
                                     if (actualType !== 'number' && actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Check for UINT8: 0 to 255
@@ -289,7 +289,7 @@ export class InferJS {
                                 case 'UINT8':
 
                                     if (actualType !== 'number' && actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Check for INT16: -32768 to 32767
@@ -299,7 +299,7 @@ export class InferJS {
                                 case 'INT16':
 
                                     if (actualType !== 'number' && actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Check for UINT16: 0 to 65535
@@ -309,7 +309,7 @@ export class InferJS {
                                 case 'UINT16':
 
                                     if (actualType !== 'number' && actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Check for INT32: -2147483648 to 2147483647
@@ -318,7 +318,7 @@ export class InferJS {
                                 case 'INT32':
 
                                     if (actualType !== 'number' && actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Check for UINT32: 0 to 4294967295
@@ -327,7 +327,7 @@ export class InferJS {
                                 case 'UINT32':
 
                                     if (actualType !== 'number' && actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Check for INT64: -9223372036854775808 to 9223372036854775807
@@ -338,7 +338,7 @@ export class InferJS {
                                 case 'INT64':
 
                                     if (actualType !== 'bigint' && actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 // Check for UINT64: 0 to 18446744073709551615
@@ -348,7 +348,7 @@ export class InferJS {
                                 case 'UINT64':
 
                                     if (actualType !== 'bigint' && actualType !== 'string') break;
-                                    if (!validate(infer, argValue, inferValue)) THROW();
+                                    if (!validate(inferExpectation, argValue, inferExpectationValue)) THROW();
                                     break;
 
                                 default: break;

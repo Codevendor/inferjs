@@ -48,9 +48,9 @@ export class InferTypeError extends TypeError {
 
     /**
      * The InferTypeError constructor.
-     * @param {*} inferObject - The infer object. 
-     * @param {*} paramIndex - The index of the param being checked.
-     * @param {*} actualType - The actual type of the parameter.
+     * @param {object} inferObject - The infer object. 
+     * @param {number} paramIndex - The index of the param being checked.
+     * @param {string} actualType - The actual type of the parameter.
      */
     constructor(inferObject, paramIndex, actualType) {
 

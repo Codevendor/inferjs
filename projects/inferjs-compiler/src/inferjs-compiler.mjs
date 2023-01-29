@@ -182,7 +182,7 @@ export class InferCompiler {
 
         const json = JSON.stringify(infersObject);
 
-        return `export const Infers = ${json};`;
+        return `export const InferFile = ${json};`;
 
     }
 
