@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/tests/test1.mjs",
+            "program": "${workspaceFolder}/tests/inferjs-library/test1.mjs",
             "args": [
                 "--config='./configs/dev.json'",
                 "--trace-warnings",
@@ -26,11 +26,11 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/src/compiler/infer-compiler.mjs",
+            "program": "${workspaceFolder}/projects/inferjs-compiler/src/main.mjs",
             "args": [
                 "-f",
-                "--input-file=./tests/test1.mjs",
-                "--output-file=./tests/infers/test1.infer.mjs",
+                "--input-file=./tests/inferjs-library/test1.mjs",
+                "--output-file=./tests/inferjs-library/infers/test1.infer.mjs",
                 "--output-file-options-flag=wx",
             ]
         },
@@ -41,12 +41,12 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/src/compiler/infer-compiler.mjs",
+            "program": "${workspaceFolder}/projects/inferjs-compiler/src/main.mjs",
             "args": [
                 "-d",
-                "--input-dir=./tests",
+                "--input-dir=./tests/inferjs-library",
                 "--input-dir-options-recursive=true",
-                "--output-file=./tests/infers/test1.infer.mjs",
+                "--output-file=./tests/inferjs-library/infers/test1.infer.mjs",
                 "--output-file-options-flag=wx",
             ]
         },
@@ -57,11 +57,11 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/src/compiler/infer-compiler.mjs",
+            "program": "${workspaceFolder}/projects/inferjs-compiler/src/main.mjs",
             "args": [
                 "-a",
-                "--input-list='./tests/test1.mjs','./tests/test2.mjs'",
-                "--output-file=./tests/infers/test1.infer.mjs",
+                "--input-list='./tests/inferjs-library/test1.mjs','./tests/inferjs-library/test2.mjs'",
+                "--output-file=./tests/inferjs-library/infers/test1.infer.mjs",
                 "--output-file-options-flag=wx",
             ]
         },
@@ -72,11 +72,11 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/src/compiler/infer-compiler.mjs",
+            "program": "${workspaceFolder}/projects/inferjs-compiler/src/main.mjs",
             "args": [
                 "-l",
-                "--input-file-list=./tests/list.txt",
-                "--output-file=./tests/infers/test1.infer.mjs",
+                "--input-file-list=./tests/inferjs-library/list.txt",
+                "--output-file=./tests/inferjs-library/infers/test1.infer.mjs",
                 "--output-file-options-flag=wx",
             ]
         }

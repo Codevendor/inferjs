@@ -6,7 +6,7 @@
         {
             "label": "Cleanup-Test1-Infers",
             "type": "shell",
-            "command": "rm ./tests/infers/test1.infer.mjs",
+            "command": "rm ./tests/inferjs-library/infers/test1.infer.mjs",
             "windows": {
                 "command": ".\\scripts\\test.cmd"
             },
@@ -19,7 +19,7 @@
         {
             "label": "Compile-Test1",
             "type": "shell",
-            "command": "node ./src/compiler/infer-compiler.mjs -f -input-file=./tests/test1.mjs -output-file=./tests/infers/test1.infer.mjs",
+            "command": "node ./projects/inferjs-compiler/src/main.mjs -f -input-file=./tests/inferjs-library/test1.mjs -output-file=./tests/inferjs-library/infers/test1.infer.mjs",
             "windows": {
                 "command": ".\\scripts\\test.cmd"
             },
