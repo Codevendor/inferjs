@@ -101,12 +101,12 @@ const InferJS = require("./projects/inferjs-library/src/core/inferjs.mjs");
 const inferjs = new InferJS(InferFile);
 ```
 
-There are many ways to utilize the [**InferJS-Library**](https://github.com/Codevendor/inferjs). The example above, imports in the pre-compiled **InferFile** that was created with the [**InferJS-Compiler**](https://github.com/Codevendor/inferjs). Intialize the [**InferJS-Library**](https://github.com/Codevendor/inferjs) class with the **InferFile** you want to use.
+There are many ways to utilize the [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src). The example above, imports in the pre-compiled **InferFile** that was created with the [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-compiler/src). Intialize the [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src) class with the **InferFile** you want to use.
 ```js
 const inferjs = new InferJS(Infers);
 ```
 
-Once the InferJS-Library and InferFile are included at the top of your file you can then utilize the type checking features. Below is an example of how to create a JSDoc multiline comment for type checking.
+Once the [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src) and **InferFile** are included at the top of your file you can then utilize the type checking features. Below is an example of how to create a JSDoc multiline comment for type checking.
 
 #### Custom JSDoc Multiline Comment with Custom Infers
 
@@ -152,7 +152,7 @@ The **JSDoc** tag **@param** below specifies a method's parameter type(s), name 
  */
 ```
 
-[**InferJS-Library**](https://github.com/Codevendor/inferjs) reads the precompiled **InferFile** 
+[**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src) reads the precompiled **InferFile** 
 and uses it to process all type checking and **inferred expectations**. 
 
 Below is a list of **standard** and **extended types** that can be checked:
@@ -177,7 +177,7 @@ Below is a list of **standard** and **extended types** that can be checked:
 
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS-Library: Expectation Checking with Tag @infer
 
-[**InferJS-Library**](https://github.com/Codevendor/inferjs) also allows for extended type checking with the custom **@infer** tag. Add one or multiple **infer** tags to any parameter type. This will allow narrowing your types down throught expectations. 
+[**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src) also allows for extended type checking with the custom **@infer** tag. Add one or multiple **infer** tags to any parameter type. This will allow narrowing your types down throught expectations. 
 
 Below is an simple example of **@infer**:
 #### Fomart for @infer: 
