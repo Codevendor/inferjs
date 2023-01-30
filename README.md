@@ -135,8 +135,8 @@ foo('test', 1234, true);
 
 The **JSDoc** tag **@param** below specifies a method's parameter type(s), name and description.
 #### Fomart for @param: 
-- @param {[type]()} paramName - description
-- @param {([type]()|[type]())} paramName - description
+- **@param** {[_type_]()} paramName - _description_
+- **@param** {([_type_]()|[_type_]())} paramName - _description_
 
 ##### Single type check example:
 ```js
@@ -171,9 +171,9 @@ Below is a list of **standard** and **extended types** that can be checked:
 | [array]() | An array type: [[]]() |
 | [infinity]() | An infinity number type: [Infinity]() |
 | [nan]() | Not a number type: [NaN]() |
-| ["className"]() | A class name: [fooClass]() |
-| ["functionName"]() | A function name: [fooFunction]() |
-| ["errorName"]() | An error type: [Error]() or [TypeError]() or [errorName]()  |
+| ["_className_"]() | A class name: [fooClass]() |
+| ["_functionName_"]() | A function name: [fooFunction]() |
+| ["_errorName_"]() | An error type: [Error]() or [TypeError]() or [errorName]()  |
 
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS-Library: Expectation Checking with Tag @infer
 
@@ -181,8 +181,8 @@ Below is a list of **standard** and **extended types** that can be checked:
 
 Below is an simple example of **@infer**:
 #### Fomart for @infer: 
-- @infer {[type]()} paramName {[expectation]()} - description
-- @infer {([type]()|[type]())} paramName {([expectation]()|[expectation]())} - description
+- **@infer** {[_type_]()} paramName {[_expectation_]()} - _description_
+- **@infer** {([_type_]()|[_type_]())} paramName {([_expectation_]()|[_expectation_]())} - _description_
 
 ```js
 /**
@@ -278,8 +278,8 @@ This special tag allows code to still work while **JavaScript** is **compressed/
 **@inferid** can be anything you want as a name, but must be **unique** per item you want to check.
 
 Below is an example of **@inferid**:
-#### Fomart for @infer: 
-- @inferid [uniqueId]()
+#### Fomart for @inferid: 
+- **@inferid** [uniqueId]()
 
 ```js
 /**
@@ -294,10 +294,10 @@ To check all your types and expectations, you need to call the [**InferJS-Librar
 Below is the overload signature for the method **check()**:
 | Method Signature for [**InferJS-Library**](https://github.com/Codevendor/inferjs): check() |
 | :-- |
-| **check** (&nbsp;inferId: [@inferid](),&nbsp;&nbsp;args: [arguments]()&nbsp;) |
-| Desc: Checks all method parameters and undeclared method parameters. |
-| **check** (&nbsp;inferId: [@inferid](),&nbsp;&nbsp;arg: [field](),&nbsp;&nbsp; isField: [boolean]() &nbsp;) |
-| Desc: Checks all single declared variables or fields. 
+| **check** (&nbsp;inferId: [_@inferid_](),&nbsp;&nbsp;args: [_arguments_]()&nbsp;) |
+| Description: Checks all method parameters and undeclared method parameters. |
+| **check** (&nbsp;inferId: [_@inferid_](),&nbsp;&nbsp;arg: [_field_](),&nbsp;&nbsp; isField: [_boolean_]() &nbsp;) |
+| Description: Checks all single declared variables or fields. 
 
 #### Example Check All Method Params:
 
@@ -394,6 +394,8 @@ _For more examples, please refer to the [Documentation](https://inferjs.com)_
 
 <!-- CHANGELOG -->
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Change Log
+
+- [[ Jan 30, 2023 ]()] - Restructing InferJSCompiler for version package releases. Dist folder will conatin two sub folders, latest and versions.
 
 - [[ Jan 29, 2023 ]()] - Changing the main **InferJS** repo structure to isolate projects and versioning. Redefined error type InferRuleError to InferExpectError.
 
