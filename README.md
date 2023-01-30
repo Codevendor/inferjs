@@ -395,7 +395,7 @@ _For more examples, please refer to the [Documentation](https://inferjs.com)_
 <!-- CHANGELOG -->
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Change Log
 
-- [[ Jan 30, 2023 ]()] - Restructing InferJSCompiler for version package releases. Dist folder will conatin two sub folders, latest and versions.
+- [[ Jan 30, 2023 ]()] - Restructing **InferJSCompiler** for version package releases. Dist folder will conatin two sub folders, **latest** and **versions**.
 
 - [[ Jan 29, 2023 ]()] - Changing the main **InferJS** repo structure to isolate projects and versioning. Redefined error type InferRuleError to InferExpectError.
 
