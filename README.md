@@ -80,11 +80,25 @@ Below are examples for using [**InferJS-Library**](https://github.com/Codevendor
 
 #### JavaScript Script Tag Sync Example - Client Side
 ```js
-<script src="./inferjs-infer-file.mjs"></script>
+<script src="./inferjs-infer-file.js"></script>
 <script src="./inferjs-0.0.1.min.js"></script>
 <script>
 const inferjs = new InferJS(InferFile);
 </script>
+```
+
+#### NodeJs ES6+ Import Module - Server Side
+```js
+import { InferFile } from "./inferjs-infer-file.mjs";
+import { InferJS } from "./projects/inferjs-library/src/core/inferjs.mjs";
+const inferjs = new InferJS(InferFile);
+```
+
+#### NodeJs Require - Server Side
+```js
+const InferFile = require("./inferjs-infer-file.js");
+const InferJS = require("./projects/inferjs-library/src/core/inferjs.mjs");
+const inferjs = new InferJS(InferFile);
 ```
 
 There are many ways to utilize the [**InferJS-Library**](https://github.com/Codevendor/inferjs). The example above, imports in the pre-compiled **InferFile** that was created with the [**InferJS-Compiler**](https://github.com/Codevendor/inferjs). Intialize the [**InferJS-Library**](https://github.com/Codevendor/inferjs) class with the **InferFile** you want to use.
