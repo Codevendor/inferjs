@@ -31,7 +31,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS Overview
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;InferJS Overview
 
 [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src) allows you to easily add runtime type checking by utilizing **JSDoc** multiline comments in both client and server side **JavaScript**. [**InferJS**](https://github.com/Codevendor/inferjs) is provided with an  [**InferJS-Compiler**](https://github.com/Codevendor/inferjs). The compiler interprets your **JSDoc** comments from your source code and compiles them into an **InferFile** that you can import into any **JavaScript** file. 
 
@@ -47,16 +47,16 @@ With this library, you can also enable **Extended Type Checking** and narrow dow
 
 
 <!-- GETTING STARTED -->
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Getting Started
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;Getting Started
 
 New Structure coming soon...
 
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Prerequisites
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;Prerequisites
 
 New Structure coming soon...
 
 
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Installation
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;Installation
 
 New Structure coming soon...
 
@@ -65,7 +65,7 @@ New Structure coming soon...
 
 
 <!-- USAGE EXAMPLES -->
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS-Library: Usage
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;InferJS-Library: Usage
 
 Below are examples for using [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src) in your code.
 
@@ -131,7 +131,7 @@ foo('test', 1234, true);
 ```
 
 
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS-Library: Type Checking with JSDoc @param
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;InferJS-Library: Type Checking with JSDoc @param
 
 The **JSDoc** tag **@param** below specifies a method's parameter type(s), name and description.
 #### Fomart for @param: 
@@ -175,7 +175,7 @@ Below is a list of **standard** and **extended types** that can be checked:
 | ["_functionName_"]() | A function name: [fooFunction]() |
 | ["_errorName_"]() | An error type: [Error]() or [TypeError]() or [errorName]()  |
 
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS-Library: Expectation Checking with Tag @infer
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;InferJS-Library: Expectation Checking with Tag @infer
 
 [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src) also allows for extended type checking with the custom **@infer** tag. Add one or multiple **infer** tags to any parameter type. This will allow narrowing your types down throught expectations. 
 
@@ -200,7 +200,7 @@ The **@infer** tag is so versatile you can attach it to multiple types in a grou
  */
 ```
 
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS-Library: Tag @infer Expectation Types
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;InferJS-Library: Tag @infer Expectation Types
 
 There are many extended expectation types for narrowing your types down with your **@infer** tags.
 
@@ -269,7 +269,7 @@ Below is a list of common rule expectation types:
 
 
 
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS-Library: Linking with Tag @inferid
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;InferJS-Library: Linking with Tag @inferid
 
 The tag **@inferid** is a unique identifier for linking [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src) behind the scenes. It is required for each **method**, **property** or **field**, you would like to infer. 
 
@@ -287,7 +287,7 @@ Below is an example of **@inferid**:
  */
 ```
 
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS-Library: Running InferJS Checks with Method check()
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;InferJS-Library: Running InferJS Checks with Method check()
 
 To check all your types and expectations, you need to call the [**InferJS-Library**](https://github.com/Codevendor/inferjs) **check()** method. It needs to be added at the beginning of each method(s) starting closure or below each field you would like to check.
 
@@ -313,7 +313,7 @@ var a = 'foo';
 inferjs.check('Your - @inferid', a);  
 ```
 
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS Library: Type Checking Errors
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;InferJS Library: Type Checking Errors
 
 In [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src/) you have the option to throw **exceptions** or return the **exception** from the check method. Thrown errors come with tons of information for debugging your infers and code. 
 
@@ -346,7 +346,7 @@ Expectation Value: "1234"
 Argument Value: ""
 ```
 
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS-Compiler: Usage
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;InferJS-Compiler: Usage
 
 Before [**InferJS-Library**](https://github.com/Codevendor/inferjs) can do type checking, you need to compile your **Infers** into an **InferFile**. Below are terminal commands for processing your **JavaScript** file(s) **Infers**.
 
@@ -385,7 +385,7 @@ _For more examples, please refer to the [Documentation](https://inferjs.com)_
 
 
 <!-- ROADMAP -->
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Roadmap
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;Roadmap
 - [[ March 2023 ]()] - First Release Date - Possible 
 - [[ Feb 2023 ]()] - Make Distributon Plan and Library Versioning for browser with Webpack and Terser for JS minification.
 - [[ Jan 25, 2023 ]()] - Under Development and Testing
@@ -393,7 +393,7 @@ _For more examples, please refer to the [Documentation](https://inferjs.com)_
 
 
 <!-- CHANGELOG -->
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Change Log
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;Change Log
 
 - [[ Jan 30, 2023 ]()] - Restructing **InferJSCompiler** for version package releases. Dist folder will conatin two sub folders, **latest** and **versions**.
 
@@ -410,7 +410,7 @@ See the [open issues](https://github.com/Codevendor/inferjs/issues) for a full l
 
 
 <!-- CONTRIBUTING -->
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Contributing
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -428,7 +428,7 @@ Don't forget to give the project a star! Thanks again!
 
 
 <!-- LICENSE -->
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />License
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;License
 
 Distributed under the **MIT** License. See `LICENSE.txt` for more information.
 
@@ -437,7 +437,7 @@ Distributed under the **MIT** License. See `LICENSE.txt` for more information.
 
 
 <!-- CONTACT -->
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Contact
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;Contact
 
 Project Link: [https://github.com/Codevendor/inferjs](https://github.com/Codevendor/inferjs)
 
@@ -446,7 +446,7 @@ Project Link: [https://github.com/Codevendor/inferjs](https://github.com/Codeven
 
 
 <!-- ACKNOWLEDGMENTS -->
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />Acknowledgments
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;Acknowledgments
 
 * [Codevendor](https://codevendor.com]) - Thanks to developer: **Adam Smith** for creating InferJS.
 * [JSDoc](https://jsdoc.app/) - Thanks to **Michael Mathews** and **Gabriel Reid** for creating JSDoc. 
