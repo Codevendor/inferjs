@@ -355,19 +355,19 @@ Before [**InferJS-Library**](https://github.com/Codevendor/inferjs) can do type 
 |:-- |:--: |:--  |               
 | [parse-file]()        | -f          | Parses a **JavaScript** file, looking for **JSDoc** multiline comments. Processes custom comment infer tags: **@inferid**, **@infer**, **@param**.  |
 ```ps
-foo@console:~$: node "./compiler/inferjs-compiler.mjs" -f --input-file="./tests/test1.mjs" --output-file="./tests/out.infer.mjs" 
+foo@console:~$: InferJSCompiler -f --input-file="./tests/test1.mjs" --output-file="./tests/out.infer.mjs" 
 ```
 | Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Cmd| Description |
 |:-- |:--: |:--  |
 | [parse-dir]()  | -d           | Parses a directory, looking for **JavaScript** files with **JSDoc** multiline comments. Options for **recursive** and **allowedExtensions**.  Processes custom comment infer tags: **@inferid**, **@infer**, **@param**. |
 ```ps
-foo@console:~$: node "./compiler/inferjs-compiler.mjs" -d --input-dir="./tests" --output-file="./tests/out.infer.mjs" 
+foo@console:~$: InferJSCompiler -d --input-dir="./tests" --output-file="./tests/out.infer.mjs" 
 ```
 | Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Cmd| Description |
 |:-- |:--: |:--  |
 | [parse-list]()  | -a          | Parses a list of string file paths, looking for **JavaScript** with **JSDoc** multiline comments. Processes custom comment infer tags: **@inferid**, **@infer**, **@param**. |
 ```ps
-foo@console:~$: node "./compiler/inferjs-compiler.mjs" -a --input-list="./tests/test1.mjs, ./tests/test2.mjs" --output-file="./tests/out.infer.mjs" 
+foo@console:~$: InferJSCompiler -a --input-list="./tests/test1.mjs, ./tests/test2.mjs" --output-file="./tests/out.infer.mjs" 
 ```
 
 | Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Cmd| Description |
@@ -375,7 +375,7 @@ foo@console:~$: node "./compiler/inferjs-compiler.mjs" -a --input-list="./tests/
 | [parse-file-list]()  | -l           | Parses a file, containing a list of string file paths, separated by newline characters. Each file is parsed, looking for **JavaScript** with **JSDoc** multiline comments. Processes custom comment infer tags: **@inferid**, **@infer**, **@param**.   |
 
 ```ps 
-foo@console:~$: node "./compiler/inferjs-compiler.mjs" -l --input-file-list="./file-list" --output-file="./out.infer.mjs" 
+foo@console:~$: InferJSCompiler -l --input-file-list="./file-list" --output-file="./out.infer.mjs" 
 ```
 
 _For more examples, please refer to the [Documentation](https://inferjs.com)_
