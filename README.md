@@ -310,7 +310,7 @@ In [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/project
 
 Below are examples of exception type responses from [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src/).  
 
-#### > InferTypeError Example
+#### > InferTypeError Example:
 ```console
 InferTypeError: Incorrect third parameter type in:
 @inferid: foo
@@ -320,7 +320,7 @@ Expected Type: object
 Actual Type: null
 ```
 
-#### > InferExpectError Example
+#### > InferExpectError Example:
 ```console
 InferExpectError: Incorrect first parameter failed infer expectation type check in:
 @inferid: foo
@@ -330,8 +330,6 @@ Expectation Type: STRING-NOT-EMPTY
 Expectation Value: "1234"
 Argument Value: ""
 ```
-
-There are many ways to utilize the [**InferJS**](https://github.com/Codevendor/inferjs) library to help type check all your **JavaScript** code. 
 
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS-Compiler: Usage
 
