@@ -308,8 +308,9 @@ In [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/project
 | [InferTypeError](https://github.com/Codevendor/inferjs/blob/main/projects/inferjs-library/src/errors/infer-type-error.mjs) | For all type errors created from the JSDoc tag **@param** {*} |
 | [InferExpectError](https://github.com/Codevendor/inferjs/blob/main/projects/inferjs-library/src/errors/infer-expect-error.mjs) | For all errors related to the custom JSDoc tag **@infer** and custom expectation rules. |
 
-Below is an example of an **InferTypeError** exception. 
+Below are examples of exception type responses from [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src/).  
 
+#### > InferTypeError Example
 ```console
 InferTypeError: Incorrect third parameter type in:
 @inferid: foo
@@ -318,6 +319,18 @@ InferTypeError: Incorrect third parameter type in:
 Expected Type: object
 Actual Type: null
 ```
+
+#### > InferExpectError Example
+```console
+InferExpectError: Incorrect first parameter failed infer expectation type check in:
+@inferid: foo
+@function: foo( msg: <string|number|null>, id: <number|string>, send: <boolean> )
+@param: msg
+Expectation Type: STRING-NOT-EMPTY
+Expectation Value: "1234"
+Argument Value: ""
+```
+
 There are many ways to utilize the [**InferJS**](https://github.com/Codevendor/inferjs) library to help type check all your **JavaScript** code. 
 
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS-Compiler: Usage
