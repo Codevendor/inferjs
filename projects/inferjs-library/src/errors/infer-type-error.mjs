@@ -11,7 +11,7 @@ import { numberRepresent, type_of } from "../helpers/helpers.mjs";
  */
 export class InferTypeError extends TypeError {
 
-    // // Private fields
+    // Private fields
     #inferObject = null;
     #paramPosition = 0;
     #actualType = '';

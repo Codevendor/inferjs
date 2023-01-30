@@ -23,7 +23,9 @@ export class InferExpectError extends Error {
     #param = '';
     #inferExpectation = '';
     #argValue = '';
+    #argValueSafe = '';
     #inferExpectationValue = '';
+    #inferExpectationValueSafe = '';
 
     /** Gets the param position. */
     get paramPosition() { return this.#paramPosition; }
@@ -52,8 +54,14 @@ export class InferExpectError extends Error {
     /** Gets the argValue. */
     get argValue() { return this.#argValue; }
 
+    /** Gets the argValueSafe. */
+    get argValueSafe() { return this.#argValueSafe; }
+
     /** Gets the inferExpectationValue. */
     get inferExpectationValue() { return this.#inferExpectationValue; }
+
+    /** Gets the inferExpectationValueSafe. */
+    get inferExpectationValueSafe() { return this.#inferExpectationValueSafe; }
 
     /** Returns the error name. */
     get name() { return this.constructor.name }
@@ -71,6 +79,12 @@ export class InferExpectError extends Error {
 
         super();
 
+        this.#inferExpectation = inferExpectation;
+        this.#argValue = argValue;
+        this.#argValueSafe = this.#convertArgToSafeString(argValue);
+        this.#inferExpectationValue = inferExpectationValue;
+        this.#inferExpectationValueSafe = this.#convertArgToSafeString(inferExpectationValue);
+
         this.#inferObject = inferObject;
         this.#paramPosition = paramIndex + 1;
         this.#actualType = this.#getUniqueActualType(actualType, true);
@@ -81,12 +95,35 @@ export class InferExpectError extends Error {
         this.#param = Object.keys(inferObject['@param'])[paramIndex];
         this.#expectedType = this.#getExpectedType(inferObject, this.#param, true);
 
-        this.message = `Incorrect ${this.#paramPositionRepresent} parameter type in:\n` +
+        this.message = `Incorrect ${this.#paramPositionRepresent} parameter failed infer expectation type check in:\n` +
             `@inferid: ${this.#inferId}\n` +
             `@function: ${this.#methodSignature}\n` +
             `@param: ${this.#param}\n` +
-            `Expected Type: ${this.#expectedType}\n` +
-            `Actual Type: ${this.#actualType}`;
+            `Expectation Type: ${this.#inferExpectation}\n` +
+            `Expectation Value: ${this.#inferExpectationValueSafe}\n` +
+            `Argument Value: ${this.#argValueSafe}`;
+
+    }
+
+    /**
+     * Converts an argument value to a string representation with JSON.stringify.
+     * @param {*} argValue - The argument value to convert to string representation.
+     * @returns {string} - Returns a string representation of the argValue. 
+     */
+    #convertArgToSafeString(argValue) {
+
+        let safeString = '';
+
+        try {
+
+            safeString = JSON.stringify(argValue);
+
+        } catch (err) {
+
+            safeString = 'unknown';
+        }
+
+        return safeString;
 
     }
 
