@@ -159,20 +159,21 @@ Below is a list of **standard** and **extended types** that can be checked:
 
 | Standard JS Types&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description |
 | :-- | :-- |
-| [bool]()      |  A boolean type: [true]() or [false]() |
-| [number]() | A number type: [1000]() or [10.25]() |
-| [string]() | A string type: ['foo1']() or ["foo2"]() |
-| [bigint]() | A big integer type: ['1010101112233343545545545446n']() |
-| [symbol]() | A symbol type: [**Symbol**]() |
-| [null]()   | A null type: [**null**]() |
 | [undefined]() | An undefined type: [**undefined**]() |
+| [null]()   | A null type: [**null**]() |
+| [boolean]()      |  A boolean type: [true]() or [false]() |
+| [number]() | A number type: [1000]() or [10.25]() |
+| [bigint]() | A big integer type: ['1010101112233343545545545446n']() |
+| [string]() | A string type: ['foo1']() or ["foo2"]() |
+| [symbol]() | A symbol type: [**Symbol**]() |
+| [function]() | A function type: [**function**]() |
 | **Extended InferJS Types** | **Description** |
 | [array]() | An array type: [[]]() |
-| [className]() | A class name: [fooClass]() |
-| [functionName]() | A function name: [fooFunction]() |
-| [errorName]() | An error type: [Error]() or [TypeError]() or [errorName]()  |
 | [infinity]() | An infinity number type: [Infinity]() |
 | [nan]() | Not a number type: [NaN]() |
+| ["className"]() | A class name: [fooClass]() |
+| ["functionName"]() | A function name: [fooFunction]() |
+| ["errorName"]() | An error type: [Error]() or [TypeError]() or [errorName]()  |
 
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left; margin-right: 8px" />InferJS-Library: Expectation Checking with Tag @infer
 
@@ -336,7 +337,7 @@ Actual Type: null
 
 #### > InferExpectError Example:
 ```console
-InferExpectError: Incorrect first parameter failed infer expectation type check in:
+InferExpectError: Incorrect first parameter, failed infer expectation type check in:
 @inferid: foo
 @function: foo( msg: <string|number|null>, id: <number|string>, send: <boolean> )
 @param: msg

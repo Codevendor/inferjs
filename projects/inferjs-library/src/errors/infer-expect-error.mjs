@@ -95,7 +95,7 @@ export class InferExpectError extends Error {
         this.#param = Object.keys(inferObject['@param'])[paramIndex];
         this.#expectedType = this.#getExpectedType(inferObject, this.#param, true);
 
-        this.message = `Incorrect ${this.#paramPositionRepresent} parameter failed infer expectation type check in:\n` +
+        this.message = `Incorrect ${this.#paramPositionRepresent} parameter, failed infer expectation type check in:\n` +
             `@inferid: ${this.#inferId}\n` +
             `@function: ${this.#methodSignature}\n` +
             `@param: ${this.#param}\n` +
