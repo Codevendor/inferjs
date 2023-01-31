@@ -319,7 +319,7 @@ In [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/project
 
 | Exception Types | Description |
 | :-- | :-- |
-| [InferUnhandledError](https://github.com/Codevendor/inferjs/blob/main/projects/inferjs-library/src/errors/infer-unhandled-error.mjs) | For all errors unhandled by the inferjs library. |
+| [InferUnhandledError](https://github.com/Codevendor/inferjs/blob/main/projects/inferjs-library/src/errors/infer-unhandled-error.mjs) | For all errors unhandled by the **InferJS** library. |
 | [InferTypeError](https://github.com/Codevendor/inferjs/blob/main/projects/inferjs-library/src/errors/infer-type-error.mjs) | For all type errors created from the JSDoc tag **@param** {*} |
 | [InferExpectError](https://github.com/Codevendor/inferjs/blob/main/projects/inferjs-library/src/errors/infer-expect-error.mjs) | For all errors related to the custom JSDoc tag **@infer** and custom expectation rules. |
 
