@@ -7,6 +7,32 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "Build-InferJS-Library",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/projects/inferjs-library/node_modules/webpack/bin/webpack.js",
+            "args": [
+                "--config", "${workspaceFolder}/projects/inferjs-library/webpack.config.js"
+            ],  
+            "env" : { "NODE_ENV" : "production" }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Build-InferJS-Compiler",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/projects/inferjs-compiler/node_modules/webpack/bin/webpack.js",
+            "args": [
+                "--config", "${workspaceFolder}/projects/inferjs-compiler/webpack.config.js"
+            ],  
+            "env" : { "NODE_ENV" : "production" }
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Launch-Test1",
             "skipFiles": [
                 "<node_internals>/**"

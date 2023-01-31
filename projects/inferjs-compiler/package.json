@@ -1,0 +1,20 @@
+{
+  "name": "inferjs-compiler",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./src/main.mjs",
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  },
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Codevendor",
+  "license": "MIT",
+  "bin": {
+    "InferJSCompiler": "./bin/latest/InferJSCompiler.mjs"
+  }
+}

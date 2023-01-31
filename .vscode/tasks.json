@@ -19,7 +19,7 @@
         {
             "label": "Compile-Test1",
             "type": "shell",
-            "command": "node ./projects/inferjs-compiler/src/main.mjs -f -input-file=./tests/inferjs-library/test1.mjs -output-file=./tests/inferjs-library/infers/test1.infer.mjs",
+            "command": "node ./projects/inferjs-compiler/src/main.mjs -f -input-file=./tests/inferjs-library/test1.html -output-file=./tests/inferjs-library/infers/test1.infer.mjs",
             "windows": {
                 "command": ".\\scripts\\test.cmd"
             },

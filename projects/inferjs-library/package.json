@@ -1,17 +1,21 @@
 {
-  "name": "inferjs-library",
+  "name": "inferjs",
   "version": "0.0.1",
   "description": "",
   "main": "./index.mjs",
+
   "devDependencies": {
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"
   },
   "scripts": {
-    "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "node bin/cleanup.mjs",
+    "build": "node bin/cleanup.mjs && node bin/build.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test1-esmodule": "node ../../tests/inferjs-library/test1.mjs",
+    "test2-commonjs": "node ../../tests/inferjs-library/test2.js" 
   },
   "keywords": [],
-  "author": "",
+  "author": "Codevendor (https://codevendor.com)",
   "license": "MIT"
 }

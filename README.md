@@ -49,18 +49,59 @@ With this library, you can also enable **Extended Type Checking** and narrow dow
 <!-- GETTING STARTED -->
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;Getting Started
 
-New Structure coming soon...
+Start by cloning the **InferJS** github repository.
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Codevendor/inferjs.git
+   ```
 
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;Prerequisites
 
-New Structure coming soon...
+Included in the repo is a folder named '**dist**'. It contains the latest precompiled minified versions of both [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src) and [**InferJS-Compiler**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-compiler/src). If using the [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src), please select the correct Javascript inclusion type: ([esmodule](), [commonjs](), [script]()).
+
+If you would like to build your own minified copy of [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src) or [**InferJS-Compiler**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-compiler/src), you will need to install **Webpack version 5+** with the following commands. The commands need to be run from within the projects folders where the **package.json** files reside. Or you can install them globally with the **-g** identifier.
+
+#### Webpack Latest Install 
+```ps
+npm install --save-dev webpack
+npm install --save-dev webpack-cli
+
+or
+
+npm install -g --save-dev webpack
+npm install -g --save-dev webpack-cli
+```
+
+The latest version of **webpack 5** automatically installs **terser-webpack-plugin** with it. If it doesn't you will need to install it as well in the projects folder. Terser is used for minimizing/compressing code for use in browser.
+
+#### Terser Webpack Plugin (optional if webpack 5+)
+```ps
+npm install terser-webpack-plugin --save-dev
+```
 
 
-## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;Installation
+## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;Building & Installation
 
-New Structure coming soon...
+Depending upon your needs, you will need to follow the instructions below, to properly install and use the library/compiler.
 
+### InferJS-Library - Build
+(Optional) - To build the library in **NodeJS**, use the following **npm** command from within the **projects/inferjs-library** folder.
+```ps
+npm run build
+```
+This will build the latest version of the [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src) in the '**dist**' folder. Make sure to have **webpack**, **webpack cli**, and **terser-webpack-plugin** installed first, before running the **npm** command above.
 
+### InferJS-Compiler - Build
+Building the [**InferJS-Compiler**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-compiler/src) is essential for making the library work. It creates the **InferFile**, that is used in the type checking of the library. To build the latest compiler and link it globally, use the following command withing the **projects/inferjs-compiler** folder.
+```ps
+npm run build
+```
+Once built and linked globally, you can call it with the **InferJSCompiler** command.
+
+### Browser - Build
+Copy one of the minimized **inferjs-{version}.min.js** from the **dist** folder to your website. Copy the compiled **InferFile** to your website. 
+
+Add both to your **Javascript** file for type checking. You only need to recompile with the [**InferJS-Compiler**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-compiler/src) if you change your **JSDoc** multiline comments, **@param** or **InferJS** tag **@infer**. 
 
 
 
@@ -69,35 +110,35 @@ New Structure coming soon...
 
 Below are examples for using [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src) in your code.
 
-#### ES6+ Import Module Example - Client side
+#### Brower ESModule Import Example - Client side
 ```js
 <script type="module">
   import { InferFile } from "./inferjs-infer-file.mjs";
-  import { InferJS } from "./inferjs-0.0.1.min.mjs";
+  import { InferJS } from "./esmodule/inferjs-0.0.1.min.js";
   const inferjs = new InferJS(InferFile);
 </script>
 ```
 
-#### JavaScript Script Tag Sync Example - Client Side
+#### Browser JavaScript Script Tag Sync Example - Client Side
 ```js
 <script src="./inferjs-infer-file.js"></script>
-<script src="./inferjs-0.0.1.min.js"></script>
+<script src="./script/inferjs-0.0.1.min.js"></script>
 <script>
 const inferjs = new InferJS(InferFile);
 </script>
 ```
 
-#### NodeJs ES6+ Import Module - Server Side
+#### NodeJs ESModule Import - Server Side
 ```js
 import { InferFile } from "./inferjs-infer-file.mjs";
-import { InferJS } from "./projects/inferjs-library/src/core/inferjs.mjs";
+import { InferJS } from "./esmodule/inferjs-0.0.1.min.js";
 const inferjs = new InferJS(InferFile);
 ```
 
-#### NodeJs Require - Server Side
+#### NodeJs CommonJS Require - Server Side
 ```js
 const InferFile = require("./inferjs-infer-file.js");
-const InferJS = require("./projects/inferjs-library/src/core/inferjs.mjs");
+const InferJS = require("./commonjs/inferjs-0.0.1.min.js");
 const inferjs = new InferJS(InferFile);
 ```
 
@@ -394,6 +435,8 @@ _For more examples, please refer to the [Documentation](https://inferjs.com)_
 
 <!-- CHANGELOG -->
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;Change Log
+
+- [[ Jan 31, 2023 ]()] - Built **package.json** with build commands for **webpack** configs, to automate the building and versioning of the library. Updated _readme.md_ with processes.
 
 - [[ Jan 30, 2023 ]()] - Restructing **InferJSCompiler** for version package releases. Dist folder will conatin two sub folders, **latest** and **versions**.
 
