@@ -4,6 +4,7 @@ import { type_of } from "./type-of.mjs";
 import { parseBool } from "./parse-bool.mjs";
 import { between, betweenBigInt } from "./between.mjs";
 import { isNumeric } from "./is-numeric.mjs";
+import { isBigInt } from "./is-bigint.mjs";
 
 // Regex functions
 const REG_NUMERIC = new RegExp(`^[-]{0,1}[0-9]+[n]{0,1}$`);
@@ -34,7 +35,7 @@ export function validate(method, value, evalue) {
         case 'NULL': return (type_of(value) === 'null');
 
         // Checks if symbol
-        case 'SYMBOL': return (type_of(value) === 'SYMBOL');
+        case 'SYMBOL': return (type_of(value) === 'symbol');
 
         // Checks if boolean
         case 'BOOLEAN': return (type_of(value) === 'boolean');
@@ -61,7 +62,7 @@ export function validate(method, value, evalue) {
         case 'STRING-EMPTY': return (value.toString().trim() === '');
 
         // Checks if value string is of boolean type
-        case 'ISBOOL': return (parseBool(value) === -1) ? false : true;
+        case 'IS-BOOL': return (parseBool(value) === -1) ? false : true;
 
         // Checks if value between
         case 'BETWEEN': return between(value, evalue);
@@ -97,10 +98,13 @@ export function validate(method, value, evalue) {
         case 'ALPHA': return REG_ALPHA.test(value.toString());
 
         // Checks if a string is a number        
-        case 'ISNUMBER': return REG_NUMBER.test(value.toString());
+        case 'IS-NUMBER': return REG_NUMBER.test(value.toString());
 
-        // Checks if a string is numeric
-        case 'ISNUMERIC': return isNumeric(value);
+        // Checks if value is bigint or string bigint.
+        case 'IS-BIGINT': return isBigInt(value);
+
+        // Checks if value is a number, float, bigint or numeric string
+        case 'IS-NUMERIC': return isNumeric(value);
 
         // Checks if string is alpha numeric.
         case 'ALPHA-NUMERIC': return REG_ALPHA_NUMERIC.test(value.toString());
@@ -193,7 +197,11 @@ export function validate(method, value, evalue) {
         case 'CHAR':
         case 'INT8':
 
-            if (!REG_NUMERIC.test(value.toString()) || !between(value, [-128, 127], true)) return false;
+            if (!isNumeric(value)) return false;
+            value = parseInt(value);
+            if (isNaN(value)) return false;
+            if (!between(value, [-128, 127], true)) return false;
+
             return true;
 
         // Check for UINT8: 0 to 255
@@ -201,7 +209,11 @@ export function validate(method, value, evalue) {
         case 'UCHAR':
         case 'UINT8':
 
-            if (!REG_NUMERIC.test(value.toString()) || !between(value, [0, 255], true)) return false;
+            if (!isNumeric(value)) return false;
+            value = parseInt(value);
+            if (isNaN(value)) return false;
+            if (!between(value, [0, 255], true)) return false;
+
             return true;
 
         // Check for INT16: -32768 to 32767
@@ -210,7 +222,11 @@ export function validate(method, value, evalue) {
         case 'SIGNED-SHORT-INT':
         case 'INT16':
 
-            if (!REG_NUMERIC.test(value.toString()) || !between(value, [-32768, 32767], true)) return false;
+            if (!isNumeric(value)) return false;
+            value = parseInt(value);
+            if (isNaN(value)) return false;
+            if (!between(value, [-32768, 32767], true)) return false;
+
             return true;
 
         // Check for UINT16: 0 to 65535
@@ -219,7 +235,11 @@ export function validate(method, value, evalue) {
         case 'USHORT':
         case 'UINT16':
 
-            if (!REG_NUMERIC.test(value.toString()) || !between(value, [0, 65535], true)) return false;
+            if (!isNumeric(value)) return false;
+            value = parseInt(value);
+            if (isNaN(value)) return false;
+            if (!between(value, [0, 65535], true)) return false;
+
             return true;
 
         // Check for INT32: -2147483648 to 2147483647
@@ -227,7 +247,11 @@ export function validate(method, value, evalue) {
         case 'INT':
         case 'INT32':
 
-            if (!REG_NUMERIC.test(value.toString()) || !between(value, [-2147483648, 2147483647], true)) return false;
+            if (!isNumeric(value)) return false;
+            value = parseInt(value);
+            if (isNaN(value)) return false;
+            if (!between(value, [-2147483648, 2147483647], true)) return false;
+
             return true;
 
         // Check for UINT32: 0 to 4294967295
@@ -235,7 +259,11 @@ export function validate(method, value, evalue) {
         case 'UINT':
         case 'UINT32':
 
-            if (!REG_NUMERIC.test(value.toString()) || !between(value, [0, 4294967295], true)) return false;
+            if (!isNumeric(value)) return false;
+            value = parseInt(value);
+            if (isNaN(value)) return false;
+            if (!between(value, [0, 4294967295], true)) return false;
+
             return true;
 
         // Check for INT64: -9223372036854775808 to 9223372036854775807
@@ -245,7 +273,11 @@ export function validate(method, value, evalue) {
         case 'LONG-LONG':
         case 'INT64':
 
-            if (!REG_NUMERIC.test(value.toString()) || !betweenBigInt(BigInt(value), [BigInt('-9223372036854775808'), BigInt('9223372036854775807')], true)) return false;
+            if (!isNumeric(value)) return false;
+            value = value.toString();
+            if (value.endsWith('n')) value = value.slice(0, -1);
+            if (!between(BigInt(value), [BigInt('-9223372036854775808'), BigInt('9223372036854775807')], true)) return false;
+
             return true;
 
         // Check for UINT64: 0 to 18446744073709551615
@@ -254,7 +286,11 @@ export function validate(method, value, evalue) {
         case 'ULONG':
         case 'UINT64':
 
-            if (!REG_NUMERIC.test(value.toString()) || !betweenBigInt(BigInt(value), [BigInt('0'), BigInt('18446744073709551615')], true)) return false;
+            if (!isNumeric(value)) return false;
+            value = value.toString();
+            if (value.endsWith('n')) value = value.slice(0, -1);
+            if (!between(BigInt(value), [BigInt('0'), BigInt('18446744073709551615')], true)) return false;
+
             return true;
 
         // Type not defined return false.

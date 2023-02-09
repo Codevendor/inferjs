@@ -100,7 +100,7 @@ export class InferExpectError extends Error {
             `@function: ${this.#methodSignature}\n` +
             `@param: ${this.#param}\n` +
             `Expectation Type: ${this.#inferExpectation}\n` +
-            `Expectation Value: ${this.#inferExpectationValueSafe}\n` +
+            ((this.#inferExpectationValueSafe) ? `Expectation Value: ${this.#inferExpectationValueSafe}\n` : '') +
             `Argument Value: ${this.#argValueSafe}`;
 
     }

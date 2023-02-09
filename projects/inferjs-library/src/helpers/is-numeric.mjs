@@ -1,23 +1,31 @@
 'use strict';
 
 import { type_of } from "./type-of.mjs";
+import { isBigInt } from "./is-bigint.mjs";
 
 /**
- * Checks if a string is numeric.
+ * Checks if src is a number, float, bigint or numeric string.
  * @module inferjs-library
  * @category helpers
  * @function isNumeric
- * @param {number|string} src - The src to check if numeric.
+ * @param {*} src - The src to check if numeric.
  * @returns {boolean} - Whether src is numeric.
  */
 export function isNumeric(src) {
 
-    const src_t = type_of(src);
-    if (src_t === 'number') return true;
-    if (src_t !== 'string') return false;
+    switch (type_of(src, true)) {
+        case 'number': 
+        case 'bigint': return true;
+        case 'string':
+    
+            if (isBigInt(src)) return true;
+    
+            // Trim spaces
+            src = src.trim();
 
-    // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
-    // ...and ensure strings of whitespace fail
-    return !isNaN(str) && !isNaN(parseFloat(str)); 
+            return !isNaN(parseFloat(src)); 
+        
+        default: return false;
+    }
     
 }

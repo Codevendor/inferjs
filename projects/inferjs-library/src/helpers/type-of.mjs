@@ -46,25 +46,33 @@ export function type_of(src, extended = false) {
             if (!extended) return 'object';
 
             // Check type
-            const str2 = ({}).toString.call(src);
-            const m2 = str2.match(REG_PARSE_OBJECT_STRING);
+            const m = ({}).toString.call(src).match(REG_PARSE_OBJECT_STRING);
 
-            if (!m2 || m2.length !== 3) return 'object';
+            if (!m || m.length !== 3) return 'object';
 
-            switch (m2[1]) {
+            // Convert m2[2] to lowercase
+            m[2] = m[2].toLowerCase();
+
+            switch (m[1]) {
 
                 case 'string': return 'stringobject';
                 case 'object':
 
-                    // Check if array
-                    if (m2[2].toLowerCase() === 'array') return 'array';
+                    switch (m[2]) {
 
-                    // Check if error
-                    if (m2[2].toLowerCase() === 'error') return (src.constructor.name) ? src.constructor.name : 'error';
-                    
-                    // Check if constructor
-                    if (src.constructor.name) return src.constructor.name;
+                        case 'arguments': return 'arguments';
+                        case 'array': return 'array';
+                        case 'error': return (src.constructor.name) ? src.constructor.name : 'error';
+                        default:
 
+                            // Check if constructor
+                            if (src.constructor.name) return src.constructor.name;
+
+                            return 'object';
+
+                    }
+
+                // Return defualt object
                 default: return 'object';
 
             }
@@ -74,7 +82,7 @@ export function type_of(src, extended = false) {
             // Check if window
             if (typeof window !== 'undefined' && src === window) return 'window';
 
-
+            // Return actual srcType reported
             return srcType;
 
     }
