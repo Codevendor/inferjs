@@ -14,7 +14,7 @@
     <a href="https://github.com/Codevendor/inferjs"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Codevendor/inferjs">View Demo</a>
+    <a href="https://inferjs/demo.html">Live Example</a>
     ·
     <a href="https://github.com/Codevendor/inferjs/issues">Report Bug</a>
     ·
@@ -92,7 +92,7 @@ npm run build
 This will build the latest version of the [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src) in the '**dist**' folder. Make sure to have **webpack**, **webpack cli**, and **terser-webpack-plugin** installed first, before running the **npm** command above.
 
 ### InferJS-Compiler - Build
-Building the [**InferJS-Compiler**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-compiler/src) is essential for making the library work. It creates the **InferFile**, that is used in the type checking of the library. To build the latest compiler and link it globally, use the following command withing the **projects/inferjs-compiler** folder.
+Building the [**InferJS-Compiler**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-compiler/src) is essential for making the library work. It creates the **InferFile**, that is used in the type checking of the library. To build the latest compiler and link it globally, use the following command within the **projects/inferjs-compiler** folder.
 ```ps
 npm run build
 ```
@@ -251,7 +251,7 @@ Below is a list of common rule expectation types:
 | :-- | :-- |
 | [STRING-NOT-EMPTY]() | Checks if a string is not empty. |
 | [STRING-EMPTY]() | Checks if a string is empty. |
-| [ISBOOL]() | Checks if a string is a boolean, '[true]()', '[false]()', '[yes]()', '[no]()', '[on]()', '[off]()' '[0]()', '[1]()'. |
+| [IS-BOOL]() | Checks if a string is a boolean, '[true]()', '[false]()', '[yes]()', '[no]()', '[on]()', '[off]()' '[0]()', '[1]()'. |
 | [BETWEEN]() | Checks if number is between two numbers. |
 | [BETWEEN-INCLUSIVE]() | Checks if number is between two numbers and including equal to self. |
 | [BETWEEN-BIGINT]() | Checks if string is between two big integers. |
@@ -262,8 +262,9 @@ Below is a list of common rule expectation types:
 | [LESS-THAN-EQUAL]() | Checks if value is less than equal. |
 | [REGEX]() | Checks if matches a regular expression. |
 | [ALPHA]() | Checks if alpha characters. |
-| [ISNUMBER]() | Checks if a string is a number. |
-| [ISNUMERIC]() | Checks if a string is numeric. |
+| [IS-NUMBER]() | Checks if a string is a number. |
+| [IS-BIGINT]() | Checks if a string is a bigint. |
+| [IS-NUMERIC]() | Checks if a string is numeric. |
 | [ALPHA-NUMERIC]() | Checks if a string is alpha numeric. | 
 | [IN-ARRAY-CI]() | Checks if in array list case insensitive. |
 | [IN-ARRAY]() | Checks if in array list case sensitive. |
@@ -305,11 +306,6 @@ Below is a list of common rule expectation types:
 | [ULONG]() | ^ |
 
 
-
-
-
-
-
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;InferJS-Library: Linking with Tag @inferid
 
 The tag **@inferid** is a unique identifier for linking [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library/src) behind the scenes. It is required for each **method**, **property** or **field**, you would like to infer. 
@@ -335,10 +331,10 @@ To check all your types and expectations, you need to call the [**InferJS-Librar
 Below is the overload signature for the method **check()**:
 | Method Signature for [**InferJS-Library**](https://github.com/Codevendor/inferjs): check() |
 | :-- |
-| **check** (&nbsp;inferId: [_@inferid_](),&nbsp;&nbsp;args: [_arguments_]()&nbsp;) |
-| Description: Checks all method parameters and undeclared method parameters. |
-| **check** (&nbsp;inferId: [_@inferid_](),&nbsp;&nbsp;arg: [_field_](),&nbsp;&nbsp; isField: [_boolean_]() &nbsp;) |
-| Description: Checks all single declared variables or fields. 
+| **check** (&nbsp;inferId: [_@inferid_](),&nbsp;&nbsp;args: [_arguments_](),&nbsp;&nbsp;returnException: [_boolean = false_]()&nbsp;) |
+| Description: Type checks all parameters in arguments list and either returns or throws exception.  |
+| **check** (&nbsp;inferId: [_@inferid_](),&nbsp;&nbsp;arg: [_field_](),&nbsp;&nbsp;returnException: [_boolean = false_]()&nbsp;) |
+| Description: Type checks single declared variables or fields. 
 
 #### Example Check All Method Params:
 
@@ -435,6 +431,10 @@ _For more examples, please refer to the [Documentation](https://inferjs.com)_
 
 <!-- CHANGELOG -->
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;Change Log
+
+- [[ Feb 8, 2023 ]()] - Building **v0.0.2** of **InferJS-Library**. Library was not returning exception properly. Modified **check()** method to throw by default and return if param(_returnException_) is set to true.
+
+- [[ Feb 7, 2023 ]()] - Building [live example](https://inferjs.com/demo.html) on **InferJS.com** website.
 
 - [[ Jan 31, 2023 ]()] - Built **package.json** with build commands for **webpack** configs, to automate the building and versioning of the library. Updated _readme.md_ with processes.
 
