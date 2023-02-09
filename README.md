@@ -14,7 +14,7 @@
     <a href="https://github.com/Codevendor/inferjs"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://inferjs/demo.html">Live Example</a>
+    <a href="https://inferjs.com/demo.html">Live Example</a>
     ·
     <a href="https://github.com/Codevendor/inferjs/issues">Report Bug</a>
     ·
