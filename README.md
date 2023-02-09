@@ -39,7 +39,7 @@ With this library, you can also enable **Extended Type Checking** and narrow dow
 
 
 ### Built With
-* [InferJS-Library Version 0.0.1](https://inferjs.com/)
+* [InferJS-Library Version 0.0.2](https://github.com/Codevendor/inferjs/tree/main/dist/inferjs-library/latest)
 * [InferJS-Compiler Version 0.0.1](https://inferjs.com/)
 * [JSDoc Version 3+](https://jsdoc.app/)
 * [Node.js Version 18+](https://nodejs.org/)
