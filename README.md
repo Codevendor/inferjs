@@ -503,7 +503,7 @@ Project Link: [https://github.com/Codevendor/inferjs](https://github.com/Codeven
 <!-- ACKNOWLEDGMENTS -->
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;Acknowledgments
 
-* [Codevendor](https://codevendor.com]) - Thanks to developer: **Adam Smith** for creating InferJS.
+* [Codevendor](https://codevendor.com) - Thanks to developer: **Adam Smith** for creating InferJS.
 * [JSDoc](https://jsdoc.app/) - Thanks to **Michael Mathews** and **Gabriel Reid** for creating JSDoc. 
 
 
