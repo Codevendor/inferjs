@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Codevendor/inferjs">
-    <img src="https://github.com/Codevendor/inferjs/blob/main/assets/images/inferjs-logo.png?raw=true" alt="Logo" width="90%" style="max-width: 443px">
+    <img src="https://github.com/Codevendor/inferjs/blob/main/assets/images/inferjs-logo.png?raw=true" alt="Logo" height="183px" width="443px" />
   </a>
 
   <p align="center" style="margin: 20px">
