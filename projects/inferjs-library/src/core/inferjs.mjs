@@ -86,7 +86,7 @@ export class InferJS {
         if (type_of(this.#inferObject) !== 'object' || type_of(this.#inferObject.infers) !== 'object' || !this.#inferObject.infers.hasOwnProperty(inferId)) {
 
             const err = new TypeError(`Cannot find infer with inferid: ${inferId}`);
-            if (returnException) throw err;
+            if (!returnException) throw err;
             return err;
         }
 
@@ -116,7 +116,7 @@ export class InferJS {
 
                 // Check if type exists
                 if (!allowedTypes.hasOwnProperty(argType) && !allowedTypes.hasOwnProperty(argTypeExt, true)) {
-                    if (returnException) throw new InferTypeError(inf, i, argType + '|' + argTypeExt);
+                    if (!returnException) throw new InferTypeError(inf, i, argType + '|' + argTypeExt);
                     return new InferTypeError(inf, i, argType + '|' + argTypeExt);
                 }
 
@@ -139,7 +139,7 @@ export class InferJS {
 
                             // Method for throwing
                             const THROW = () => {
-                                if (returnException) throw new InferExpectError(inf, i, argType + '|' + argTypeExt, inferExpectation, argValue, inferExpectationValue);
+                                if (!returnException) throw new InferExpectError(inf, i, argType + '|' + argTypeExt, inferExpectation, argValue, inferExpectationValue);
                                 return new InferExpectError(inf, i, argType + '|' + argTypeExt, inferExpectation, argValue, inferExpectationValue);
                             };
 

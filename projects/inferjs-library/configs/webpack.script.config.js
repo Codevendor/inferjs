@@ -11,7 +11,7 @@ const pack = require('../package.json');
 const versionName = 'ver-' + pack.version.split('.').join('-');
 
 // Get name
-const outputFileName = pack.name + '-' + pack.version + '.min.js';
+const outputFileName = pack.name.split('-')[0] + '-' + pack.version + '.min.js';
 
 // Create a paths object
 const paths = {

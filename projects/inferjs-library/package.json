@@ -1,9 +1,8 @@
 {
-  "name": "inferjs",
-  "version": "0.0.1",
-  "description": "",
-  "main": "./index.mjs",
-
+  "name": "inferjs-library",
+  "version": "0.0.3",
+  "description": "A runtime library that allows you to infer rules for extended type checking in JavaScript.",
+  "main": "index.mjs",
   "devDependencies": {
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"
@@ -11,11 +10,44 @@
   "scripts": {
     "clean": "node bin/cleanup.mjs",
     "build": "node bin/cleanup.mjs && node bin/build.mjs",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "test1-esmodule": "node ../../tests/inferjs-library/test1.mjs",
-    "test2-commonjs": "node ../../tests/inferjs-library/test2.js" 
+    "test1-esm": "node bin/build-test1-esm-inferobject.mjs && node tests/test1-esm.mjs",
+    "test1-cjs": "node bin/build-test1-cjs-inferobject.mjs && node tests/test1-cjs.js"
   },
-  "keywords": [],
-  "author": "Codevendor (https://codevendor.com)",
-  "license": "MIT"
+  "keywords": [
+    "inferjs",
+    "infer js",
+    "inferjs library",
+    "inferjs-library",
+    "type checking",
+    "type checking javascript",
+    "types",
+    "infer",
+    "infers",
+    "infer rules",
+    "expect",
+    "infer expectations",
+    "jsdoc"
+  ],
+  "author": {
+    "name": "Adam Smith",
+    "url": "https://codevendor.com/"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Codevendor/inferjs.git"
+  },
+  "engines": {
+    "node": "~14.0.0",
+    "npm": "5.0.0"
+  },
+  "os": [
+    "ubuntu",
+    "debian"
+  ],
+  "cpu": [
+    "x86",
+    "x64"
+  ]
 }
