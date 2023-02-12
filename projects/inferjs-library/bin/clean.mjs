@@ -1,6 +1,6 @@
 /**
  * Cleans up files and folders for InferJS-Library across multiple platforms.
- * @name cleanup.mjs
+ * @name clean.mjs
  */
 
 //console.log(process.env["npm_package_version"])

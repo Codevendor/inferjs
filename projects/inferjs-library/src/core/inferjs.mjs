@@ -7,6 +7,7 @@ import { InferExpectError, InferTypeError } from "../errors/errors.mjs";
 /**
  * A runtime library that allows you to infer rules for extended type checking in JavaScript.
  * @class InferJS
+ * @version 0.0.3
  */
 export class InferJS {
 

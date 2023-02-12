@@ -1,6 +1,6 @@
-import { InferFile } from "./inferobjects/test1-esm.io.mjs";
+import { InferObject } from "./inferobjects/test1-esm.io.mjs";
 import { InferJS } from "../src/core/inferjs.mjs";
-const inferjs = new InferJS(InferFile);
+const inferjs = new InferJS(InferObject);
 
 /**
  * Test 1 case scenario for JavaScript inferjs function.

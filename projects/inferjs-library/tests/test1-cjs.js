@@ -1,7 +1,7 @@
 
-const InferFile = require("./inferobjects/test1-cjs.io.js");
+const InferObject = require("./inferobjects/test1-cjs.io.js");
 const InferJS = require("../src/core/inferjs.mjs");
-const inferjs = new InferJS(InferFile);
+const inferjs = new InferJS(InferObject);
 
 /**
  * Test 1 case scenario for JavaScript inferjs function.

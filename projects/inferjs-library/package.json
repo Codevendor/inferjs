@@ -8,8 +8,8 @@
     "webpack-cli": "^5.0.1"
   },
   "scripts": {
-    "clean": "node bin/cleanup.mjs",
-    "build": "node bin/cleanup.mjs && node bin/build.mjs",
+    "clean": "node bin/clean.mjs",
+    "build": "node bin/clean.mjs && node bin/build.mjs",
     "test1-esm": "node bin/build-test1-esm-inferobject.mjs && node tests/test1-esm.mjs",
     "test1-cjs": "node bin/build-test1-cjs-inferobject.mjs && node tests/test1-cjs.js"
   },

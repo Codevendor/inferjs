@@ -24,10 +24,11 @@ export {
 } from "./regex-const.mjs";
 
 // Helper methods
-export { buildInferFile } from "./build-infer-file.mjs";
+export { buildInferObject } from "./build-infer-object.mjs";
 export { getLineNumber } from "./get-line-number.mjs";
 export { lstat } from "./lstat.mjs";
 export { parseArgv } from "./parse-argv.mjs";
 export { readDir } from "./read-dir.mjs";
 export { readFile } from "./read-file.mjs";
+export { type_of } from "./type-of.mjs";
 export { writeFile } from "./write-file.mjs";

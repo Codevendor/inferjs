@@ -1,6 +1,5 @@
 // Imports
 import path from "node:path";
-import { argv } from "node:process";
 
 import {
     REG_JS_COMMENTS,
@@ -17,10 +16,9 @@ import {
     REG_INFER_PARSE_TAG_TYPE,
     REG_INFER_PARSE_TAG_TYPEDEF,
     REG_INFER_PARSE_TAG_YIELDS,
-    buildInferFile,
+    buildInferObject,
     getLineNumber,
     lstat,
-    parseArgv,
     readDir,
     readFile,
     writeFile
@@ -29,7 +27,7 @@ import {
 /**
  * The InferJSCompiler Class
  * @name InferJSCompiler
- * @version 0.0.1
+ * @version 0.0.2
  */
 export class InferJSCompiler {
 
@@ -73,7 +71,7 @@ export class InferJSCompiler {
             inputFileList = path.resolve(inputFileList);
         }
 
-        console.log(`Loading inputFileList: ${inputFileList} ...`);
+        console.info()('INFERJS-COMPILER')(`Loading inputFileList: ${inputFileList} ...`);
 
         // Read in file
         const readResults = await readFile(inputFileList, inputFileOptions);
@@ -97,7 +95,7 @@ export class InferJSCompiler {
                 inputFile = path.resolve(inputFile);
             }
 
-            console.log(`Loading file: ${inputFile} ...`);
+            console.info()('INFERJS-COMPILER')(`Loading file: ${inputFile} ...`);
 
             // Read in file
             const readResults2 = await readFile(inputFile, 'utf8');
@@ -108,7 +106,7 @@ export class InferJSCompiler {
             // Convert readResults2 to string
             readResults2.data = readResults2.data.toString();
 
-            console.log(`Parsing file: ${inputFile} ...`);
+            console.info()('INFERJS-COMPILER')(`Parsing file: ${inputFile} ...`);
 
             // Parse file to object
             this.#parse(inputFile, readResults2.data);
@@ -119,15 +117,15 @@ export class InferJSCompiler {
             outputFile = path.resolve(outputFile);
         }
 
-        console.log(`Writing output file: ${outputFile} ...`);
+        console.info()('INFERJS-COMPILER')(`Writing output file: ${outputFile} ...`);
 
         // Write file to output file with json
-        const writeResults = await writeFile(outputFile, buildInferFile(this.#source), outputFileOptions);
+        const writeResults = await writeFile(outputFile, buildInferObject(this.#source, outputFileOptions?.['module']), outputFileOptions);
 
         // Throw err
         if (!!writeResults.err) throw writeResults.err;
 
-        console.log(`Finished`)
+        console.info()('INFERJS-COMPILER')(`Finished`)
 
     }
 
@@ -146,7 +144,7 @@ export class InferJSCompiler {
         if (typeof outputFile !== 'string') throw new TypeError(`Incorrect type for method parseList, parameter outputFile must be an string!`);
         if (typeof outputFileOptions !== 'object') throw new TypeError(`Incorrect type for method parseList, parameter outputFileOptions must be an object!`);
 
-        console.log(`Loading inputList: ${inputList} ...`);
+        console.info()('INFERJS-COMPILER')(`Loading inputList: ${inputList} ...`);
 
         for (let i = 0; i < inputList.length; i++) {
 
@@ -158,7 +156,7 @@ export class InferJSCompiler {
                 inputFile = path.resolve(inputFile);
             }
 
-            console.log(`Loading file: ${inputFile} ...`);
+            console.info()('INFERJS-COMPILER')(`Loading file: ${inputFile} ...`);
 
             // Read in file
             const readResults = await readFile(inputFile, inputFileOptions);
@@ -169,7 +167,7 @@ export class InferJSCompiler {
             // Convert readResults to string
             readResults.data = readResults.data.toString();
 
-            console.log(`Parsing file: ${inputFile} ...`);
+            console.info()('INFERJS-COMPILER')(`Parsing file: ${inputFile} ...`);
 
             // Parse file to object
             this.#parse(inputFile, readResults.data);
@@ -180,15 +178,15 @@ export class InferJSCompiler {
             outputFile = path.resolve(outputFile);
         }
 
-        console.log(`Writing output file: ${outputFile} ...`);
+        console.info()('INFERJS-COMPILER')(`Writing output file: ${outputFile} ...`);
 
         // Write file to output file with json
-        const writeResults = await writeFile(outputFile, buildInferFile(this.#source), outputFileOptions);
+        const writeResults = await writeFile(outputFile, buildInferObject(this.#source, outputFileOptions?.['module']), outputFileOptions);
 
         // Throw err
         if (!!writeResults.err) throw writeResults.err;
 
-        console.log(`Finished`);
+        console.info()('INFERJS-COMPILER')(`Finished`);
 
     }
 
@@ -213,7 +211,7 @@ export class InferJSCompiler {
             inputFile = path.resolve(inputFile);
         }
 
-        console.log(`Loading file: ${inputFile} ...`);
+        console.info()('INFERJS-COMPILER')(`Loading file: ${inputFile}`);
 
         // Read in file
         const readResults = await readFile(inputFile, inputFileOptions);
@@ -224,7 +222,7 @@ export class InferJSCompiler {
         // Convert readResults to string
         readResults.data = readResults.data.toString();
 
-        console.log(`Parsing file: ${inputFile} ...`);
+        console.info()('INFERJS-COMPILER')(`Parsing file: ${inputFile}`);
 
         // Parse file to object
         this.#parse(inputFile, readResults.data);
@@ -233,15 +231,15 @@ export class InferJSCompiler {
             outputFile = path.resolve(outputFile);
         }
 
-        console.log(`Writing output file: ${outputFile} ...`);
+        console.info()('INFERJS-COMPILER')(`Writing output file: ${outputFile}`);
 
         // Write file to output file with json
-        const writeResults = await writeFile(outputFile, buildInferFile(this.#source), outputFileOptions);
+        const writeResults = await writeFile(outputFile, buildInferObject(this.#source, outputFileOptions?.['module']), outputFileOptions);
 
         // Throw err
         if (!!writeResults.err) throw writeResults.err;
 
-        console.log(`Finished`);
+        console.info()('INFERJS-COMPILER')(`Finished`);
     }
 
     /**
@@ -276,7 +274,7 @@ export class InferJSCompiler {
                 inputFile = path.resolve(inputFile);
             }
 
-            console.log(`Loading file: ${inputFile} ...`);
+            console.info()('INFERJS-COMPILER')(`Loading file: ${inputFile} ...`);
 
             // Read in file
             const readResults = await readFile(inputFile, 'utf8');
@@ -287,7 +285,7 @@ export class InferJSCompiler {
             // Convert readResults to string
             readResults.data = readResults.data.toString();
 
-            console.log(`Parsing file: ${inputFile} ...`);
+            console.info()('INFERJS-COMPILER')(`Parsing file: ${inputFile} ...`);
 
             // Parse file to object
             this.#parse(inputFile, readResults.data);
@@ -298,15 +296,15 @@ export class InferJSCompiler {
             outputFile = path.resolve(outputFile);
         }
 
-        console.log(`Writing output file: ${outputFile} ...`);
+        console.info()('INFERJS-COMPILER')(`Writing output file: ${outputFile} ...`);
 
         // Write file to output file with json
-        const writeResults = await writeFile(outputFile, buildInferFile(this.#source), outputFileOptions);
+        const writeResults = await writeFile(outputFile, buildInferObject(this.#source, outputFileOptions?.['module']), outputFileOptions);
 
         // Throw err
         if (!!writeResults.err) throw writeResults.err;
 
-        console.log(`Finished`)
+        console.info()('INFERJS-COMPILER')(`Finished`)
     }
 
     /**
@@ -438,7 +436,7 @@ export class InferJSCompiler {
         const m = jsComment.match(REG_INFER_ID);
         if (!m || m.length !== 2 || m[1].trim() === '') {
             const lineNumber = getLineNumber(fileData, jsComment);
-            console.warn(`JS Comment missing tag @inferid on Line: ${lineNumber}\nFile: ${filePath}\nComment:\n${jsComment}`);
+            console.warn()('INFERJS-COMPILER')(`JS Comment missing tag @inferid on Line: ${lineNumber}\nFile: ${filePath}\nComment:\n${jsComment}`);
             return;
         }
 
@@ -447,9 +445,9 @@ export class InferJSCompiler {
         // Check if inferid already exists
         if (this.#source.infers.hasOwnProperty(inferid)) {
             const lineNumber = getLineNumber(fileData, jsComment) + (getLineNumber(jsComment, m[1]) - 1);
-            console.warn(`Tag @inferid with id (${inferid}), exists in multiple places! Please change one to a more unique id.`);
-            console.warn(`on Line: ${this.#source.infers[inferid].line}, File: ${this.#source.infers[inferid].file}`);
-            console.warn(`on Line: ${lineNumber}, File: ${filePath}`);
+            console.warn()('INFERJS-COMPILER')(`Tag @inferid with id (${inferid}), exists in multiple places! Please change one to a more unique id.`);
+            console.warn()('INFERJS-COMPILER')(`on Line: ${this.#source.infers[inferid].line}, File: ${this.#source.infers[inferid].file}`);
+            console.info()('INFERJS-COMPILER')(`on Line: ${lineNumber}, File: ${filePath}`);
             return;
 
         }
@@ -799,7 +797,6 @@ export class InferJSCompiler {
 
         }
 
-        //console.log('Found: ', this.#source.infers);
 
     }
 

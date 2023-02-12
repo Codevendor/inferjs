@@ -154,7 +154,7 @@ const inferjs = new InferJS();
 inferjs.inferObject = InferObject;
 ```
 
-Once the [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library) and [**InferObject**] file are included at the top of your file you can then utilize the type checking features. Below is an example of how to create a **JSDoc** multiline comment for type checking.
+Once the [**InferJS-Library**](https://github.com/Codevendor/inferjs/tree/main/projects/inferjs-library) and [**InferObject**]() file are included at the top of your file you can then utilize the type checking features. Below is an example of how to create a **JSDoc** multiline comment for type checking.
 
 #### Custom JSDoc Multiline Comment with Custom Infer Expectations
 
@@ -431,6 +431,7 @@ _For more examples, please refer to the [Documentation](https://inferjs.com)_
 
 <!-- ROADMAP -->
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;Roadmap
+- [[ April 2023 ]()] - Create a plan for text localization with the **InferJS** repo.
 - [[ March 2023 ]()] - First Release Date - Possible 
 - [[ Feb 2023 ]()] - Make Distributon Plan and Library Versioning for browser with Webpack and Terser for JS minification.
 - [[ Jan 25, 2023 ]()] - Under Development and Testing
@@ -439,6 +440,10 @@ _For more examples, please refer to the [Documentation](https://inferjs.com)_
 
 <!-- CHANGELOG -->
 ## <img height="28" width="29" src="https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true" style="float:left;" />&nbsp;&nbsp;Change Log
+
+- [[ Feb, 12, 2023 ]()] - Built a logger class for managing console logging of CLI **InferJS-Compiler**. Built a starting help menu system.
+
+- [[ Feb, 11, 2023 ]()] - Working on assertion test scripts for both **InferJS-Library** and **InferJS-Compiler**. Opted for using Nodejs **test runner**.
 
 - [[ Feb 10, 2023 ]()] - Adding output module type for **InferJS-Compiler**. Param **-output-file-options-module** accepts ( [_esmodule_]() | [_commonjs_]() | [_script_]() ). Defaults to [esmodule]().
 

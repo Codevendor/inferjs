@@ -7,44 +7,135 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Build-InferJS-Library",
-            "skipFiles": [
-                "<node_internals>/**"
+            "name": "PRODUCTION BUILD: InferJS-Library",
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script", "build",
+                "--prefix", "${workspaceFolder}/projects/inferjs-library/"
             ],
-            "program": "${workspaceFolder}/projects/inferjs-library/node_modules/webpack/bin/webpack.js",
-            "args": [
-                "--config", "${workspaceFolder}/projects/inferjs-library/webpack.config.js"
-            ],  
-            "env" : { "NODE_ENV" : "production" }
+            "env" : { "NODE_ENV" : "production" },
+            "outputCapture": "std"
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "Build-InferJS-Compiler",
-            "skipFiles": [
-                "<node_internals>/**"
+            "name": "PRODUCTION BUILD: InferJS-Compiler",
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script", "build",
+                "--prefix", "${workspaceFolder}/projects/inferjs-compiler/"
             ],
-            "program": "${workspaceFolder}/projects/inferjs-compiler/node_modules/webpack/bin/webpack.js",
-            "args": [
-                "--config", "${workspaceFolder}/projects/inferjs-compiler/webpack.config.js"
-            ],  
-            "env" : { "NODE_ENV" : "production" }
+            "env" : { "NODE_ENV" : "production" },
+            "outputCapture": "std"
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch-Test1",
+            "name": "TEST: INFERJS-COMPILER: All Tests",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/tests/inferjs-library/test1.mjs",
+            "program": "${workspaceFolder}/projects/inferjs-compiler/tests/test.mjs",
             "args": [
-                "--config='./configs/dev.json'",
-                "--trace-warnings",
-                "start"
+                "--test",
+                "--no-warnings"
             ],
-            "preLaunchTask": "Build-Test1",
+            "outputCapture": "std"
         },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "TEST: INFERJS-COMPILER: Parse Directory",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/projects/inferjs-compiler/tests/test-parse-dir.mjs",
+            "args": [
+                "--test",
+                "--no-warnings"
+            ],
+            "outputCapture": "std"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "TEST: INFERJS-COMPILER: Parse File List",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/projects/inferjs-compiler/tests/test-parse-file-list.mjs",
+            "args": [
+                "--test",
+                "--no-warnings"
+            ],
+            "outputCapture": "std"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "TEST: INFERJS-COMPILER: Parse File",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/projects/inferjs-compiler/tests/test-parse-file.mjs",
+            "args": [
+                "--test",
+                "--no-warnings"
+            ],
+            "outputCapture": "std"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "TEST: INFERJS-COMPILER: Parse List",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/projects/inferjs-compiler/tests/test-parse-list.mjs",
+            "args": [
+                "--test",
+                "--no-warnings"
+            ],
+            "outputCapture": "std"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "DEBUG: INFERJS-LIBRARY: Test1",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/projects/inferjs-library/tests/test1-esm.mjs",
+            "args": [
+                "--trace-warnings"
+            ],
+            "outputCapture": "std"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "DEBUG: INFERJS-COMPILER: Logger Test",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/projects/inferjs-compiler/src/core/logger.mjs",
+            "args": [
+                "--trace-warnings"
+            ],
+            "outputCapture": "std"
+        },
+
+
+
+
+
+
+
+
+
+        
         {
             "type": "node",
             "request": "launch",

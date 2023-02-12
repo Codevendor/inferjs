@@ -1,12 +1,18 @@
 // Imports
 import { parseArgv } from "./helpers/helpers.mjs";
 import { InferJSCompiler } from "./core/inferjs-compiler.mjs";
+import { logger } from "./core/logger.mjs";
+import { readFile } from "./helpers/helpers.mjs";
+import path from "node:path";
+
+// Create a logger
+const log = new logger(true, "\n");
 
 async function main(argv) {
 
     // Compiler requires more than 1 parameter
     if (argv.length < 3) {
-        console.log(`InferJSCompiler format: node <InferJSCompilerPath> <Parameters>\nFor help: node <InferJSCompilerPath> -h`);
+        console.warn()('INFERJS-COMPILER')(`Please specify a parameter. For help: <InferJSCompiler> -h or --help`);
         process.exit(0);
     }
 
@@ -22,13 +28,20 @@ async function main(argv) {
     // Separate arguments
     const args = parseArgv(argv, shortList);
 
-    // Check if help
-    if (args.hasOwnProperty('help')) {
-        console.log(`InferJSCompiler Help Menu:\n`);
-        process.exit(0);
-    }
-
     try {
+
+        // Check if help
+        if (args.hasOwnProperty('help')) {
+
+            const helpFile = (args.hasOwnProperty('lang')) ? `help-${args['lang']}.txt` : `help-en.txt`;
+            const helpFilePath = path.normalize(path.resolve(`../localization/${helpFile}`));
+            const results = await readFile(helpFilePath, 'utf8');
+
+            if (results.err) throw (results.err);
+
+            console.info()('INFERJS-COMPILER HELP MENU')(`\n\n${results.data}`);
+            process.exit(0);
+        }
 
         // Declare variables
         let input, inputOptions, output, outputOptions, ic, results;
@@ -47,8 +60,9 @@ async function main(argv) {
                 inputOptions = { encoding: 'utf8' };
                 if (args.hasOwnProperty('input-file-options-encoding')) inputOptions['encoding'] = args['input-file-options-encoding'];
 
-                outputOptions = { flag: "wx" };
+                outputOptions = { flag: "wx", module: "script" };
                 if (args.hasOwnProperty('output-file-options-flag')) outputOptions['flag'] = args['output-file-options-flag'];
+                if (args.hasOwnProperty('output-file-options-module')) outputOptions['module'] = args['output-file-options-module'];
 
                 output = args['output-file'];
                 if (!output || typeof output !== 'string' || output.trim() === '') {
@@ -62,7 +76,7 @@ async function main(argv) {
 
                 // Async Parse file 
                 results = await ic.parseFile(input, inputOptions, output, outputOptions).catch((err) => {
-                    throw new Error(`Processing action parse-file had internal error: ${err}`);
+                    throw new Error(`Processing action parse-file had internal error:\n${err}`);
                 });
 
                 break;
@@ -78,8 +92,9 @@ async function main(argv) {
                 if (args.hasOwnProperty('input-dir-options-recursive')) inputOptions['recursive'] = args['input-dir-options-recursive'];
                 if (args.hasOwnProperty('input-dir-options-allowedExtensions')) inputOptions['allowedExtensions'] = args['input-dir-options-allowedExtensions'];
 
-                outputOptions = { flag: "wx" };
+                outputOptions = { flag: "wx", module: "script" };
                 if (args.hasOwnProperty('output-file-options-flag')) outputOptions['flag'] = args['output-file-options-flag'];
+                if (args.hasOwnProperty('output-file-options-module')) outputOptions['module'] = args['output-file-options-module'];
 
                 output = args['output-file'];
                 if (!output || typeof output !== 'string' || output.trim() === '') {
@@ -93,7 +108,7 @@ async function main(argv) {
 
                 // Async Parse file 
                 results = await ic.parseDirectory(input, inputOptions, output, outputOptions).catch((err) => {
-                    throw new Error(`Processing action parse-dir had internal error: ${err}`);
+                    throw new Error(`Processing action parse-dir had internal error:\n${err}`);
                 });
 
                 break;
@@ -121,8 +136,9 @@ async function main(argv) {
                 if (args.hasOwnProperty('input-list-options-recursive')) inputOptions['recursive'] = args['input-list-options-recursive'];
                 if (args.hasOwnProperty('input-list-options-allowedExtensions')) inputOptions['allowedExtensions'] = args['input-list-options-allowedExtensions'];
 
-                outputOptions = { flag: "wx" };
+                outputOptions = { flag: "wx", module: "script" };
                 if (args.hasOwnProperty('output-file-options-flag')) outputOptions['flag'] = args['output-file-options-flag'];
+                if (args.hasOwnProperty('output-file-options-module')) outputOptions['module'] = args['output-file-options-module'];
 
                 output = args['output-file'];
                 if (!output || typeof output !== 'string' || output.trim() === '') {
@@ -136,7 +152,7 @@ async function main(argv) {
 
                 // Async Parse file 
                 results = await ic.parseList(input, inputOptions, output, outputOptions).catch((err) => {
-                    throw new Error(`Processing action parse-list had internal error: ${err}`);
+                    throw new Error(`Processing action parse-list had internal error:\n${err}`);
                 });
 
                 break;
@@ -153,8 +169,9 @@ async function main(argv) {
                 if (args.hasOwnProperty('input-file-list-options-recursive')) inputOptions['recursive'] = args['input-file-list-options-recursive'];
                 if (args.hasOwnProperty('input-file-list-options-allowedExtensions')) inputOptions['allowedExtensions'] = args['input-file-list-options-allowedExtensions'];
 
-                outputOptions = { flag: "wx" };
+                outputOptions = { flag: "wx", module: "script" };
                 if (args.hasOwnProperty('output-file-options-flag')) outputOptions['flag'] = args['output-file-options-flag'];
+                if (args.hasOwnProperty('output-file-options-module')) outputOptions['module'] = args['output-file-options-module'];
 
                 output = args['output-file'];
                 if (!output || typeof output !== 'string' || output.trim() === '') {
@@ -168,7 +185,7 @@ async function main(argv) {
 
                 // Async Parse file 
                 results = await ic.parseFileList(input, inputOptions, output, outputOptions).catch((err) => {
-                    throw new Error(`Processing action parse-list had internal error: ${err}`);
+                    throw new Error(`Processing action parse-list had internal error:\n${err}`);
                 });
 
                 break;
@@ -179,7 +196,8 @@ async function main(argv) {
 
     } catch (err) {
 
-        console.error(`InferJSCompiler ${err}\nFor help: node <InferJSCompilerPath> -h`);
+        // Write the error to the console.
+        console.error()('INFERJS-COMPILER')(`${err.message}`);
 
     }
 }

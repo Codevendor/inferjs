@@ -1,19 +1,52 @@
 {
   "name": "inferjs-compiler",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.2",
+  "description": "A compiler that processes JSDoc comments into an InferObject File for utilizing with the InferJS Library.",
   "main": "./src/main.mjs",
   "devDependencies": {
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"
   },
   "scripts": {
-    "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "node bin/clean.mjs",
+    "build": "node bin/clean.mjs && node bin/build.mjs",
+    "test": "node tests/test.mjs --test --no-warnings",
+    "test-parse-dir": "node tests/test-parse-dir.mjs",
+    "test-parse-file-list": "node tests/test-parse-file-list.mjs",
+    "test-parse-file": "node tests/test-parse-file.mjs",
+    "test-parse-list": "node tests/test-parse-list.mjs"
   },
-  "keywords": [],
-  "author": "Codevendor",
+  "keywords": [
+    "inferjs",
+    "inferjs compiler",
+    "inferjs-compiler",
+    "infer object",
+    "inferjs infer object",
+    "jsdoc"
+  ],
+  "author": {
+    "name": "Adam Smith",
+    "url": "https://codevendor.com/"
+  },
+  "contributors": [],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Codevendor/inferjs.git"
+  },
+  "engines": {
+    "node": "~14.0.0",
+    "npm": "5.0.0"
+  },
+  "os": [
+    "ubuntu",
+    "debian"
+  ],
+  "cpu": [
+    "x86",
+    "x64"
+  ],
+
   "bin": {
     "InferJSCompiler": "./bin/latest/InferJSCompiler.mjs"
   }
