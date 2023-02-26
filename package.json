@@ -1,0 +1,57 @@
+{
+    "name": "inferjs",
+    "version": "0.1.0",
+    "description": "A package of InferJS tools, designed for runtime checking of Javascript types and narrowing through expectations.",
+    "main": "index.js",
+    "homepage": "https://inferjs.com",
+    "type": "module",
+    "dependencies": {
+      "inferjs-compiler": "^0.0.7",
+      "inferjs-library": "^0.0.4"
+    },
+    "scripts": {
+    },
+    "keywords": [
+      "inferjs",
+      "infer js",
+      "inferjs library",
+      "inferjs-library",
+      "inferjs compiler",
+      "inferjs-compiler",
+      "type checking",
+      "type checking javascript",
+      "compiler",
+      "type",
+      "types",
+      "js types",
+      "js comments",
+      "javascript types",
+      "javascript comments",
+      "infer",
+      "infers",
+      "infer rules",
+      "infer type",
+      "infer types",
+      "expect",
+      "infer expectations",
+      "jsdoc"
+    ],
+    "author": {
+      "name": "Adam Smith",
+      "url": "https://codevendor.com/"
+    },
+    "contributors": [],
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/Codevendor/inferjs.git"
+    },
+    "engines": {
+      "node": ">=12.0.0",
+      "npm": ">=5.0.0"
+    },
+    "bugs": {
+      "url": "https://github.com/Codevendor/inferjs/issues"
+    },
+    "engineStrict": true
+  }
