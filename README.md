@@ -56,7 +56,7 @@ Here are the different options for installing the latest [**InferJS**][inferjs] 
 
 ### Install [Locally]()
 ```sh
-npm install inferjs
+npm install inferjs --save
 ```
 
 ### Install [Globally]()
