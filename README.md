@@ -4,6 +4,7 @@
 [inferjs-doc-builder]: https://github.com/Codevendor/inferjs-doc-builder
 [infer-object]: https://github.com/Codevendor/inferjs-library
 [logo]: https://github.com/Codevendor/inferjs/blob/main/assets/images/inferjs-logo.png?raw=true
+[header]: https://github.com/Codevendor/inferjs/blob/main/assets/images/git_header.png?raw=true
 [arrow]: https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true
 [library-docs]: https://github.com/Codevendor/inferjs-library/
 [library-issues]: https://github.com/Codevendor/inferjs-library/issues
@@ -29,7 +30,7 @@
 [license-url]: https://github.com/Codevendor/inferjs/blob/master/LICENSE.txt
 [product-screenshot]: images/screenshot.png
 
-![InferJS Library][logo]
+![InferJS Library][header]
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -39,7 +40,7 @@
 
 ## ![Heading][arrow]&nbsp;&nbsp;InferJS: Overview
 
-A package of InferJS tools, designed for runtime checking of Javascript types and narrowing through expectations.
+A package of InferJS tools, designed for runtime checking of JavaScript types and narrowing through expectations.
 
 - [Live Example][demo]
 
@@ -94,6 +95,7 @@ To view the repo and doumentation for the [**InferJS-Compiler**][inferjs-compile
 
 ## ![Heading][arrow]&nbsp;&nbsp;InferJS-Doc-Builder: Package Overview
 
+A custom **JSDoc** builder that includes [**InferJS**][inferjs] type definitions. (_Coming Soon..._)
 
 
 
@@ -113,6 +115,7 @@ To view the repo and doumentation for the [**InferJS-Compiler**][inferjs-compile
 <!-- ROADMAP -->
 ## ![Heading][arrow]&nbsp;&nbsp;InferJS: Roadmap
 
+- [[ Summer 2023 ]()] - Develop a custom JSDoc builder that incorporates **InferJS** definitions.
 - [[ April 2023 ]()] - Create a plan for text localization with the **InferJS** repo.
 - [[ March 2023 ]()] - First Release Date - Possible 
 - [[ Feb 2023 ]()] - Make Distributon Plan and Library Versioning for browser with Webpack and Terser for JS minification.
@@ -123,11 +126,13 @@ To view the repo and doumentation for the [**InferJS-Compiler**][inferjs-compile
 <!-- CHANGELOG -->
 ## ![Heading][arrow]&nbsp;&nbsp;InferJS: Change Log
 
-This will be moved to versioning record...
+This will be moved to versioning record per each repo...
 
-- [[ Feb, 12, 2023 ]()] - Built a logger class for managing console logging of CLI **InferJS-Compiler**. Built a starting help menu system.
+- [[ Feb 26, 2023]()] - Combine all InferJS tools into one `npm` package. 
 
-- [[ Feb, 11, 2023 ]()] - Working on assertion test scripts for both **InferJS-Library** and **InferJS-Compiler**. Opted for using Nodejs **test runner**.
+- [[ Feb 12, 2023 ]()] - Built a logger class for managing console logging of CLI **InferJS-Compiler**. Built a starting help menu system.
+
+- [[ Feb 11, 2023 ]()] - Working on assertion test scripts for both **InferJS-Library** and **InferJS-Compiler**. Opted for using Nodejs **test runner**.
 
 - [[ Feb 10, 2023 ]()] - Adding output module type for **InferJS-Compiler**. Param **-output-file-options-module** accepts ( [_esmodule_]() | [_commonjs_]() | [_script_]() ). Defaults to [esmodule]().
 
@@ -184,8 +189,9 @@ Distributed under the **MIT** License. See `LICENSE.txt` for more information.
 <!-- ACKNOWLEDGMENTS -->
 ## ![Heading][arrow]&nbsp;&nbsp;InferJS: Acknowledgments
 
-* [Codevendor](https://codevendor.com) - Thanks to developer: **Adam Smith** for creating InferJS.
-* [JSDoc](https://jsdoc.app/) - Thanks to **Michael Mathews** and **Gabriel Reid** for creating JSDoc. 
+* [Codevendor](https://codevendor.com) - Thanks to developer: **Adam Smith** for creating `InferJS`.
+* [JSDoc](https://jsdoc.app/) - Thanks to **Michael Mathews** and **Gabriel Reid** for creating `JSDoc`. 
+* [Bunting Labs](https://buntinglabs.com) - Thanks to **Brendan Ashworth**, for transferring Ownership of npm Package name `inferjs`.
 
 
 
