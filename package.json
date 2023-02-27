@@ -7,10 +7,10 @@
     "type": "module",
     "dependencies": {
       "inferjs-compiler": "^0.0.7",
+      "inferjs-doc-builder": "^0.0.1",
       "inferjs-library": "^0.0.4"
     },
-    "scripts": {
-    },
+    "scripts": {},
     "keywords": [
       "inferjs",
       "infer js",
@@ -18,6 +18,8 @@
       "inferjs-library",
       "inferjs compiler",
       "inferjs-compiler",
+      "inferjs doc builder",
+      "inferjs-doc-builder",
       "type checking",
       "type checking javascript",
       "compiler",
