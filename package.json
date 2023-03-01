@@ -1,14 +1,14 @@
 {
     "name": "inferjs",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "A package of InferJS tools, designed for runtime checking of Javascript types and narrowing through expectations.",
     "main": "index.js",
     "homepage": "https://inferjs.com",
     "type": "module",
     "dependencies": {
-      "inferjs-compiler": "^0.0.7",
+      "inferjs-compiler": "^0.0.8",
       "inferjs-doc-builder": "^0.0.1",
-      "inferjs-library": "^0.0.4"
+      "inferjs-library": "^0.0.5"
     },
     "scripts": {},
     "keywords": [
