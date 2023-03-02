@@ -29,6 +29,16 @@
 [license-shield]: https://img.shields.io/github/license/Codevendor/inferjs.svg?style=for-the-badge
 [license-url]: https://github.com/Codevendor/inferjs/blob/master/LICENSE.txt
 [product-screenshot]: images/screenshot.png
+[star0]: https://codevendor.com/scripts/stars.html?repo=inferjs&id=0
+[star1]: https://codevendor.com/scripts/stars.html?repo=inferjs&id=1
+[star2]: https://codevendor.com/scripts/stars.html?repo=inferjs&id=2
+[star3]: https://codevendor.com/scripts/stars.html?repo=inferjs&id=3
+[star-more]: https://codevendor.com/scripts/stars.html?repo=inferjs&id=-1
+[starlink0]: https://codevendor.com/scripts/starlink.html?repo=inferjs&id=0
+[starlink1]: https://codevendor.com/scripts/starlink.html?repo=inferjs&id=1
+[starlink2]: https://codevendor.com/scripts/starlink.html?repo=inferjs&id=2
+[starlink3]: https://codevendor.com/scripts/starlink.html?repo=inferjs&id=3
+[starlink-more]: https://codevendor.com/scripts/starlink.html?repo=inferjs&id=-1
 
 ![InferJS Library][header]
 
@@ -43,6 +53,10 @@
 A package of InferJS tools, designed for runtime checking of JavaScript types and narrowing through expectations.
 
 - [Live Example][demo]
+
+## ![Heading][arrow]&nbsp;&nbsp;InferJS: Repo Stargazers
+
+[![Stargazer 1 Profile][star0]][starlink0]&nbsp;&nbsp;[![Stargazer 2 Profile][star1]][starlink1]&nbsp;&nbsp;[![Stargazer 3 Profile][star2]][starlink2][![Add your star][star3]][starlink3][![Show More Stargazers][star-more]][starlink-more]
 
 ## ![Heading][arrow]&nbsp;&nbsp;InferJS: npm Package Contents
 
