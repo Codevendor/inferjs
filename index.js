@@ -4,4 +4,4 @@
  */
 
 // Helper methods
-export { InferJs } from "inferjs-library";
+export { InferJS } from "inferjs-library";
