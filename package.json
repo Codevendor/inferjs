@@ -1,6 +1,6 @@
 {
     "name": "inferjs",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "A package of InferJS tools, designed for runtime checking of Javascript types and narrowing through expectations.",
     "main": "index.js",
     "homepage": "https://inferjs.com",
