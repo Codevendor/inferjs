@@ -56,10 +56,6 @@ A package of InferJS tools, designed for runtime checking of JavaScript types an
 
 - [Live Example][demo]
 
-## ![Heading][arrow]&nbsp;&nbsp;InferJS: Repo Stargazers
-
-[![Stargazer 1 Profile][star0]][starlink0]&nbsp;&nbsp;[![Stargazer 2 Profile][star1]][starlink1]&nbsp;&nbsp;[![Stargazer 3 Profile][star2]][starlink2][![Add your star][star3]][starlink3][![Show More Stargazers][star-more]][starlink-more]
-
 ## ![Heading][arrow]&nbsp;&nbsp;InferJS: npm Package Contents
 
 - [InferJS-Library][inferjs-library] - The main library for checking types.
