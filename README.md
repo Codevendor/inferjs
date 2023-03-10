@@ -6,6 +6,7 @@
 [logo]: https://github.com/Codevendor/inferjs/blob/main/assets/images/inferjs-logo.png?raw=true
 [header]: https://github.com/Codevendor/inferjs/blob/main/assets/images/git_header.png?raw=true
 [arrow]: https://github.com/Codevendor/inferjs/blob/main/assets/images/arrowright.png?raw=true
+[check1]: https://github.com/Codevendor/inferjs/blob/main/assets/images/check1.gif?raw=true
 [library-docs]: https://github.com/Codevendor/inferjs-library/
 [library-issues]: https://github.com/Codevendor/inferjs-library/issues
 [compiler-docs]: https://github.com/Codevendor/inferjs-compiler/
@@ -83,7 +84,7 @@ git clone https://github.com/Codevendor/inferjs-compiler.git
 git clone https://github.com/Codevendor/inferjs-doc-builder.git
 ```
 
-
+![InferJS Example][check1]
 
 <!-- ABOUT THE PROJECT -->
 ## ![Heading][arrow]&nbsp;&nbsp;InferJS-Library: Package Overview
